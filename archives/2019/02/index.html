@@ -79,17 +79,13 @@
 
 
 
-<meta name="description" content="获取整个文档的文本以及CDATA数据 使用方法 let text = element.textContent;element.textContent = “hello world” 与innerText的区别 textContent 会获取所有元素的内容，包括  和  元素，然而 innerText 不会。innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。由于">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Node.textContent">
-<meta property="og:url" content="https://xiannv.github.io/index.html/2019/01/31/node.textContent/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="每日一记">
+<meta property="og:url" content="https://xiannv.github.io/index.html/archives/2019/02/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="获取整个文档的文本以及CDATA数据 使用方法 let text = element.textContent;element.textContent = “hello world” 与innerText的区别 textContent 会获取所有元素的内容，包括  和  元素，然而 innerText 不会。innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。由于">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-31T03:56:27.441Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.textContent">
-<meta name="twitter:description" content="获取整个文档的文本以及CDATA数据 使用方法 let text = element.textContent;element.textContent = “hello world” 与innerText的区别 textContent 会获取所有元素的内容，包括  和  元素，然而 innerText 不会。innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。由于">
+<meta name="twitter:title" content="每日一记">
 
 
 
@@ -119,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/01/31/node.textContent/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/archives/2019/02/">
 
 
 
 
 
-  <title>Node.textContent | 每日一记</title>
+  <title>归档 | 每日一记</title>
   
 
 
@@ -144,7 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -218,151 +214,107 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 5 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/01/31/node.textContent/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiannv">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="每日一记">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">Node.textContent</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2019/02/01/乐观锁和悲观锁/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">未命名</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-31T11:44:05+08:00">
-                2019-01-31
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-02-01T11:50:12+08:00" content="2019-02-01">
+          02-01
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>获取整个文档的文本以及CDATA数据</p>
-<p><strong>使用方法</strong></p>
-<p>let text = element.textContent;<br>element.textContent = “hello world”</p>
-<p><strong>与innerText的区别</strong></p>
-<p>textContent 会获取所有元素的内容，包括 <script> 和 <style> 元素，然而 innerText 不会。<br>innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。<br>由于 innerText 受 CSS 样式的影响，它会触发重排（reflow），但textContent 不会。</p>
-<p><strong>与innerHTML的区别</strong></p>
-<p>正如其名称，innerHTML 返回 HTML 文本。<br>通常，为了在元素中检索或写入文本，人们使用innerHTML。但是，textContent通常具有更好的性能，因为文本不会被解析为HTML。<br>此外，使用textContent可以防止  XSS 攻击。</p>
-</script></p>
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/01/30/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/31/判断两个object是否相等md/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2019/02/01/Vue/" itemprop="url">
+              
+                <span itemprop="name">Vue</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-02-01T11:50:00+08:00" content="2019-02-01">
+          02-01
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -370,10 +322,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -570,10 +518,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
