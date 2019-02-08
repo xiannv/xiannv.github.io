@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="获取整个文档的文本以及CDATA数据 使用方法 let text = element.textContent;element.textContent = “hello world” 与innerText的区别 textContent 会获取所有元素的内容，包括  和  元素，然而 innerText 不会。innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。由于">
+<meta name="description" content="title: 判断两个object是否相等date:2017-08-10 12:01:17  背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;ap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node.textContent">
-<meta property="og:url" content="https://xiannv.github.io/index.html/2019/01/31/node.textContent/index.html">
+<meta property="og:title" content="每日一记">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2017/08/11/判断两个object是否相等md/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="获取整个文档的文本以及CDATA数据 使用方法 let text = element.textContent;element.textContent = “hello world” 与innerText的区别 textContent 会获取所有元素的内容，包括  和  元素，然而 innerText 不会。innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。由于">
+<meta property="og:description" content="title: 判断两个object是否相等date:2017-08-10 12:01:17  背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;ap">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-31T03:56:27.000Z">
+<meta property="og:updated_time" content="2017-08-11T12:50:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.textContent">
-<meta name="twitter:description" content="获取整个文档的文本以及CDATA数据 使用方法 let text = element.textContent;element.textContent = “hello world” 与innerText的区别 textContent 会获取所有元素的内容，包括  和  元素，然而 innerText 不会。innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。由于">
+<meta name="twitter:title" content="每日一记">
+<meta name="twitter:description" content="title: 判断两个object是否相等date:2017-08-10 12:01:17  背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;ap">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/01/31/node.textContent/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2017/08/11/判断两个object是否相等md/">
 
 
 
 
 
-  <title>Node.textContent | 每日一记</title>
+  <title> | 每日一记</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/01/31/node.textContent/">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2017/08/11/判断两个object是否相等md/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiannv">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Node.textContent</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-31T11:56:27+08:00">
-                2019-01-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T20:50:48+08:00">
+                2017-08-11
               </time>
             
 
@@ -299,14 +299,74 @@
       
 
       
-        <p>获取整个文档的文本以及CDATA数据</p>
-<p><strong>使用方法</strong></p>
-<p>let text = element.textContent;<br>element.textContent = “hello world”</p>
-<p><strong>与innerText的区别</strong></p>
-<p>textContent 会获取所有元素的内容，包括 <script> 和 <style> 元素，然而 innerText 不会。<br>innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。<br>由于 innerText 受 CSS 样式的影响，它会触发重排（reflow），但textContent 不会。</p>
-<p><strong>与innerHTML的区别</strong></p>
-<p>正如其名称，innerHTML 返回 HTML 文本。<br>通常，为了在元素中检索或写入文本，人们使用innerHTML。但是，textContent通常具有更好的性能，因为文本不会被解析为HTML。<br>此外，使用textContent可以防止  XSS 攻击。</p>
-</script></p>
+        <hr>
+<p>title: 判断两个object是否相等<br>date:2017-08-10 12:01:17</p>
+<hr>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。<br>自变量对象都是指向不同地址的。会返回false ，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;&apos;a&apos;:1&#125;;</span><br><span class="line">var obj2 = &#123;&apos;a&apos;:1&#125;;</span><br><span class="line">console.log(obj1  === obj2); //false</span><br></pre></td></tr></table></figure></p>
+<p>也不能将对象转换为string后判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(obj1)==JSON.stringify(obj2)</span><br></pre></td></tr></table></figure></p>
+<p>因为js的obect的存储具有无序性，即属性数序可能不一致，这种方式不准确。</p>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>检查对象的“值相等”我们是需要遍历的对象的每个属性，<br>逐一看看它们是否相等。其中需要考虑：</p>
+<p>1) 如果该属性值之一本身是对象，需要 <strong>递归调用函数</strong><br>2)选择递归这种模式，需要考虑到函数被改名要同时修改函数里面的函数名，即<code>isObjectValueEqual</code>被改名后，函数里面的<code>isObjectValueEqual</code>也需要修改为一致的函数名？<br>3) 如果属性值中的一个是<code>NaN</code>（在JavaScript中，等于它自身）<br>4) 如果一个属性的值为<code>undefined</code>，而另一个对象没有这个属性</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>1）<code>callee</code> 是 arguments 对象的一个属性。它可以用于引用该函数的函数体内当前正在执行的函数。但是！在严格模式下，第5版 ECMAScript (ES5) 禁止使用 <code>arguments.callee()</code>因此，即便考虑到上面场景2，但是处于规范，弃用<code>callee</code><br>2）使用<code>_typeof</code>函数来判断值类型和<code>have</code>来判断数组中是否含有某个元素。他们都来自我自己写的一个简单js函数库 <strong>f.js</strong> 。具体源码 [<a href="https://xiannv.github.io/js/f.js][1]这里不详细展开类型判断和数组问题">https://xiannv.github.io/js/f.js][1]这里不详细展开类型判断和数组问题</a></p>
+<pre><code>function isObjectValueEqual(a, b) {
+/*
+* @Author: floralin
+* @Date:   2017-08-09 11:14:15
+* @Last Modified by:   floralin
+* @Last Modified time: 2017-08-09 20:58:00
+* @Desc: 递归判断两个对象是否相等
+*/
+for (var aProps in a) {
+    var propName = aProps;
+    // If values of same property are not equal,
+    // objects are not equivalent
+    if (_typeof(a[propName]) != _typeof(b[propName])) {
+        return false
+    } else if (
+        [&quot;string&quot;, &quot;number&quot;, &quot;boolean&quot;, &quot;undefined&quot;, &quot;null&quot;].have(_typeof(a[propName])) &amp;&amp;
+        [&quot;string&quot;, &quot;number&quot;, &quot;boolean&quot;, &quot;undefined&quot;, &quot;null&quot;].have(_typeof(b[propName]))) {
+
+        if (a[propName] !== b[propName]) {
+            return false;
+        }
+    } else if (_typeof(a[propName]) == &quot;function&quot;) {
+        if (a[propName].toString() != b[propName].toString()) {
+            return false;
+        };
+    } else {
+        return isObjectValueEqual(a[propName], b[propName])
+    }
+}
+return true;
+}
+
+var obj1 = {
+    name: &quot;xiannv&quot;,
+    sex: &quot;female&quot;,
+    jump: function() {
+
+    },
+    children: [{
+        name: &quot;flora&quot;,
+        age: 12
+    }],
+};
+
+var obj2 = {
+    name: &quot;xiannv&quot;,
+    sex: &quot;female&quot;,
+    jump: function() {
+
+    },
+    children: [{
+        name: &quot;flora&quot;,
+        age: 12
+    }],
+
+};
+console.log(isObjectValueEqual(obj1, obj2));
+</code></pre><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>场景1，用户插入新数据。用户需要插入一条新纪录，用于对比现有的所有数据，避免用户重复插入相同数据。<br>场景2，发http请求。对比上一次请求的参数和这次是否相同，相同就不发出新请求。这个在需要提供多重筛选条件的数据展示或操作型应用，很常见用。<br>场景3，还有各种需要肉眼逐一对比两个错误日志等等是否完全相等的看瞎眼案例，手动复制到控制台，直接运行。<br>当然，上面的两个问题，还有其他不同的技术方案来解决。改造一下上面的代码，可以用来判断，对象b是否含有对象a的全部属性或者对象b的数据格式和对象a有什么差异等等，等等</p>
+
       
     </div>
     
@@ -330,18 +390,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/31/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/01/Vue/" rel="prev" title="Vue">
-                Vue <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/02/乐观锁和悲观锁/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -394,8 +450,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -437,6 +502,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考"><span class="nav-number">2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">4.</span> <span class="nav-text">使用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
