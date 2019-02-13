@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="每日一记">
-<meta property="og:url" content="https://xiannv.github.io/index.html/index.html">
+<meta name="description" content="背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;console.log(obj1  === obj2); //false">
+<meta property="og:type" content="article">
+<meta property="og:title" content="判断两个object是否相等">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/13/判断两个object是否相等/index.html">
 <meta property="og:site_name" content="每日一记">
+<meta property="og:description" content="背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;console.log(obj1  === obj2); //false">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-13T08:50:17.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一记">
+<meta name="twitter:title" content="判断两个object是否相等">
+<meta name="twitter:description" content="背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;console.log(obj1  === obj2); //false">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/13/判断两个object是否相等/">
 
 
 
 
 
-  <title>每日一记</title>
+  <title>判断两个object是否相等 | 每日一记</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -214,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/13/判断两个object是否相等/" itemprop="url">判断两个object是否相等</a></h1>
+          <h1 class="post-title" itemprop="name headline">判断两个object是否相等</h1>
         
 
         <div class="post-meta">
@@ -298,9 +299,7 @@
       
 
       
-        
-          
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。<br>自变量对象都是指向不同地址的。会返回false ，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;&apos;a&apos;:1&#125;;</span><br><span class="line">var obj2 = &#123;&apos;a&apos;:1&#125;;</span><br><span class="line">console.log(obj1  === obj2); //false</span><br></pre></td></tr></table></figure></p>
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。<br>自变量对象都是指向不同地址的。会返回false ，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;&apos;a&apos;:1&#125;;</span><br><span class="line">var obj2 = &#123;&apos;a&apos;:1&#125;;</span><br><span class="line">console.log(obj1  === obj2); //false</span><br></pre></td></tr></table></figure></p>
 <p>也不能将对象转换为string后判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(obj1)==JSON.stringify(obj2)</span><br></pre></td></tr></table></figure></p>
 <p>因为js的obect的存储具有无序性，即属性数序可能不一致，这种方式不准确。</p>
 <h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>检查对象的“值相等”我们是需要遍历的对象的每个属性，<br>逐一看看它们是否相等。其中需要考虑：</p>
@@ -365,8 +364,6 @@ var obj2 = {
 console.log(isObjectValueEqual(obj1, obj2));
 </code></pre><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>场景1，用户插入新数据。用户需要插入一条新纪录，用于对比现有的所有数据，避免用户重复插入相同数据。<br>场景2，发http请求。对比上一次请求的参数和这次是否相同，相同就不发出新请求。这个在需要提供多重筛选条件的数据展示或操作型应用，很常见用。<br>场景3，还有各种需要肉眼逐一对比两个错误日志等等是否完全相等的看瞎眼案例，手动复制到控制台，直接运行。<br>当然，上面的两个问题，还有其他不同的技术方案来解决。改造一下上面的代码，可以用来判断，对象b是否含有对象a的全部属性或者对象b的数据格式和对象a有什么差异等等，等等</p>
 
-          
-        
       
     </div>
     
@@ -383,139 +380,28 @@ console.log(isObjectValueEqual(obj1, obj2));
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/13/谈前端异常捕获与上报/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiannv">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="每日一记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/13/谈前端异常捕获与上报/" itemprop="url">谈前端异常捕获与上报</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-13T16:48:54+08:00">
-                2019-02-13
-              </time>
+              <a href="/2019/02/13/谈前端异常捕获与上报/" rel="next" title="谈前端异常捕获与上报">
+                <i class="fa fa-chevron-left"></i> 谈前端异常捕获与上报
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="异常捕获方法"><a href="#异常捕获方法" class="headerlink" title="异常捕获方法"></a>异常捕获方法</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p><code>try catch</code>判断代码时候存在错误。<br>优点：可以很好的捕获异常并进行响应处理，不让页面报错挂掉。<br>缺点：需要在捕获异常的代码上进行包裹，会导致页面臃肿不堪，不适用于整个项目的异常捕获。</p>
-<h3 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h3><p>参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈信息</p>
-<p>优点：提供全局监听异常的功能。<br>缺点：跨域之后，无法捕获异常信息，统一返回script error。</p>
-<h3 id="使用windowerror异常捕获问题"><a href="#使用windowerror异常捕获问题" class="headerlink" title="使用windowerror异常捕获问题"></a>使用windowerror异常捕获问题</h3><p>针对上述所提到的跨域之后，无法捕获异常信息。<br>解决方案：script属性配置 <code>crossorigin=&quot;anonymous&quot;</code> 并且服务器添加<code>Access-Control-Allow-Origin</code></p>
-<h3 id="压缩后脚本定位"><a href="#压缩后脚本定位" class="headerlink" title="压缩后脚本定位"></a>压缩后脚本定位</h3><p>一般上线之前会对代码进行压缩，一方面节省源码体积，另外一方面合并多个文件，减少http请求数。这时候会出现压缩后无法找到原始报错位置的问题。<br>解决方案：利用webpack打包压缩后生成一份对应脚本的map文件就能进行追踪了，在webpack中开启source-map功能。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;  </span><br><span class="line">    \\...  </span><br><span class="line">    devtool: &apos;#source-map&apos;,  </span><br><span class="line">    \\...  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html" target="_blank" rel="noopener">《Source Map详解》</a></p>
-<h3 id="错误被框架自身捕获"><a href="#错误被框架自身捕获" class="headerlink" title="错误被框架自身捕获"></a>错误被框架自身捕获</h3><p>项目使用MVVM框架，window.onerror捕获不到异常，因为被框架自身的异常机制捕获了。比如Vue 2.x中使用<code>Vue.config.errorHandler</code>捕获全局异常</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -525,140 +411,11 @@ console.log(isObjectValueEqual(obj1, obj2));
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiannv">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="每日一记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/13/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-13T16:39:00+08:00">
-                2019-02-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Download-and-Install"><a href="#Download-and-Install" class="headerlink" title="Download and Install"></a>Download and Install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<h3 id="Your-style"><a href="#Your-style" class="headerlink" title="Your style"></a>Your style</h3><p><a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Theme-next Document</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -666,6 +423,10 @@ console.log(isObjectValueEqual(obj1, obj2));
 
 
           
+
+  
+
+
 
         </div>
         
@@ -686,8 +447,17 @@ console.log(isObjectValueEqual(obj1, obj2));
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -729,6 +499,22 @@ console.log(isObjectValueEqual(obj1, obj2));
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考"><span class="nav-number">2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">4.</span> <span class="nav-text">使用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -862,6 +648,10 @@ console.log(isObjectValueEqual(obj1, obj2));
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
