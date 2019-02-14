@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta name="description" content="错误拦截和上报具体可看本blog另外一篇文章《谈前端异常捕获》 采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。 场景还原">
 <meta property="og:type" content="article">
-<meta property="og:title" content="npm模块装机">
-<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/index.html">
+<meta property="og:title" content="前端监控平台实践思考">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/14/前端监控平台实践思考/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta property="og:description" content="错误拦截和上报具体可看本blog另外一篇文章《谈前端异常捕获》 采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。 场景还原">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-14T03:12:14.150Z">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/5630b495fde2160d07b2ac3f82653f39/xmlnote/WEBRESOURCEd0d9b0b4a3fd0825ed6773f6bed5cf12/1773">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/9/13/b1cbae1f29632a189e586f176d1e556c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2019-02-13T09:45:01.349Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="npm模块装机">
-<meta name="twitter:description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta name="twitter:title" content="前端监控平台实践思考">
+<meta name="twitter:description" content="错误拦截和上报具体可看本blog另外一篇文章《谈前端异常捕获》 采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。 场景还原">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/5630b495fde2160d07b2ac3f82653f39/xmlnote/WEBRESOURCEd0d9b0b4a3fd0825ed6773f6bed5cf12/1773">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/14/前端监控平台实践思考/">
 
 
 
 
 
-  <title>npm模块装机 | 每日一记</title>
+  <title>前端监控平台实践思考 | 每日一记</title>
   
 
 
@@ -232,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/14/前端监控平台实践思考/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiannv">
@@ -249,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">npm模块装机</h1>
+          <h1 class="post-title" itemprop="name headline">前端监控平台实践思考</h1>
         
 
         <div class="post-meta">
@@ -299,32 +302,11 @@
       
 
       
-        <p>在cmd中输入<code>npm install</code>回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？</p>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ol>
-<li>执行工程自身的<code>preinstall</code>, 定义的    <code>preinstall</code>钩子会被执行。</li>
-<li>确定首层依赖模块，就是<code>dependencies</code> 和 <code>devDependencies</code> 属性中直接指定的模块 或者 后面的参数</li>
-</ol>
-<blockquote>
-<pre><code>工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，npm 会开启多进程从每个首层依赖模块开始逐步寻找更深层级的节点。
-</code></pre></blockquote>
-<ol start="3">
-<li>获取模块，npm 向 registry 查询模块压缩包的网址</li>
-<li>模块扁平化。上面提到的一棵完整的依赖树，其中可能包含大量重复模块，比如A依赖的模块B也依赖了，在npm3之前会严格按照依赖树的结构进行安装，因为会造成冗余，但是3开始默认加入了dedupe的过程，会遍历所有节点，逐个将模块放到根节点下，如果重复会丢弃</li>
-<li>安装模块，更新工程中的 node_modules，并执行模块中的生命周期函数</li>
-</ol>
-<p>总结 npm install 命令。默认会找到当前路径下的package.json。然后安装其中的依赖</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="–force"><a href="#–force" class="headerlink" title="–force"></a>–force</h3><p>install前会检查目录中是否已经存在指定模块，如果存在就不再安装，因此可以使用<code>-f</code>或<code>--force</code>参数，无论有无按照，都强制重新安装：</p>
-<pre><code>npm install &lt;packageName&gt; --force
-</code></pre><h3 id="–cache-min"><a href="#–cache-min" class="headerlink" title="–cache-min"></a>–cache-min</h3><p>所有模块都从缓存安装，这样就大大加快了下载速度</p>
-<pre><code>npm install --cache-min Infinity &lt;package-name&gt;
-</code></pre><h3 id="–save-或者–save-dev"><a href="#–save-或者–save-dev" class="headerlink" title="–save 或者–save-dev"></a>–save 或者–save-dev</h3><p>在当前目录生成一个package.json文件，记录项目信息（作者，命令设置，项目名称和版本号等）方便后续的项目添加和其他开发者使用。</p>
-<p>把模块信息保存到<code>dependencies</code>(生成环境依赖)中：</p>
-<pre><code>npm install packagename --save 或 -S
-</code></pre><p>把模块信息保存到<code>devDependencies</code>(开发环境依赖)中：</p>
-<pre><code>npm install packagename --save-dev 或 -D
-</code></pre><p>安装全局的模块（不加参数的时候默认安装本地模块）：</p>
-<pre><code>npm install packagename -g 或 --global
-</code></pre>
+        <p><img src="https://note.youdao.com/yws/public/resource/5630b495fde2160d07b2ac3f82653f39/xmlnote/WEBRESOURCEd0d9b0b4a3fd0825ed6773f6bed5cf12/1773" alt="系统实现需要考虑的地方"> </p>
+<h3 id="错误拦截和上报"><a href="#错误拦截和上报" class="headerlink" title="错误拦截和上报"></a>错误拦截和上报</h3><p>具体可看本blog另外一篇文章<a href="https://xiannv.github.io/2019/02/13/谈前端异常捕获/">《谈前端异常捕获》</a></p>
+<p>采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。</p>
+<h3 id="场景还原"><a href="#场景还原" class="headerlink" title="场景还原"></a>场景还原</h3><p><img src="https://user-gold-cdn.xitu.io/2017/9/13/b1cbae1f29632a189e586f176d1e556c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="场景还原法-监控数据分析"></p>
+
       
     </div>
     
@@ -348,8 +330,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/14/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/02/14/判断两个object是否相等/" rel="next" title="判断两个object是否相等">
+                <i class="fa fa-chevron-left"></i> 判断两个object是否相等
               </a>
             
           </div>
@@ -358,8 +340,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/14/Vue/" rel="prev" title="Vue">
-                Vue <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/14/谈前端异常捕获/" rel="prev" title="谈前端异常捕获">
+                谈前端异常捕获 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -474,7 +456,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装过程"><span class="nav-number">1.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#–force"><span class="nav-number">2.1.</span> <span class="nav-text">–force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–cache-min"><span class="nav-number">2.2.</span> <span class="nav-text">–cache-min</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–save-或者–save-dev"><span class="nav-number">2.3.</span> <span class="nav-text">–save 或者–save-dev</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误拦截和上报"><span class="nav-number">1.</span> <span class="nav-text">错误拦截和上报</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景还原"><span class="nav-number">2.</span> <span class="nav-text">场景还原</span></a></li></ol></div>
             
 
           </div>

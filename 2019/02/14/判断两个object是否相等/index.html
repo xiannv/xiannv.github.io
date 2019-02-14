@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta name="description" content="背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;console.log(obj1  === obj2); //false">
 <meta property="og:type" content="article">
-<meta property="og:title" content="npm模块装机">
-<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/index.html">
+<meta property="og:title" content="判断两个object是否相等">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/14/判断两个object是否相等/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta property="og:description" content="背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;console.log(obj1  === obj2); //false">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-14T03:12:14.150Z">
+<meta property="og:updated_time" content="2019-02-13T08:50:17.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="npm模块装机">
-<meta name="twitter:description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta name="twitter:title" content="判断两个object是否相等">
+<meta name="twitter:description" content="背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;console.log(obj1  === obj2); //false">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/14/判断两个object是否相等/">
 
 
 
 
 
-  <title>npm模块装机 | 每日一记</title>
+  <title>判断两个object是否相等 | 每日一记</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/14/判断两个object是否相等/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiannv">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">npm模块装机</h1>
+          <h1 class="post-title" itemprop="name headline">判断两个object是否相等</h1>
         
 
         <div class="post-meta">
@@ -299,32 +299,71 @@
       
 
       
-        <p>在cmd中输入<code>npm install</code>回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？</p>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ol>
-<li>执行工程自身的<code>preinstall</code>, 定义的    <code>preinstall</code>钩子会被执行。</li>
-<li>确定首层依赖模块，就是<code>dependencies</code> 和 <code>devDependencies</code> 属性中直接指定的模块 或者 后面的参数</li>
-</ol>
-<blockquote>
-<pre><code>工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，npm 会开启多进程从每个首层依赖模块开始逐步寻找更深层级的节点。
-</code></pre></blockquote>
-<ol start="3">
-<li>获取模块，npm 向 registry 查询模块压缩包的网址</li>
-<li>模块扁平化。上面提到的一棵完整的依赖树，其中可能包含大量重复模块，比如A依赖的模块B也依赖了，在npm3之前会严格按照依赖树的结构进行安装，因为会造成冗余，但是3开始默认加入了dedupe的过程，会遍历所有节点，逐个将模块放到根节点下，如果重复会丢弃</li>
-<li>安装模块，更新工程中的 node_modules，并执行模块中的生命周期函数</li>
-</ol>
-<p>总结 npm install 命令。默认会找到当前路径下的package.json。然后安装其中的依赖</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="–force"><a href="#–force" class="headerlink" title="–force"></a>–force</h3><p>install前会检查目录中是否已经存在指定模块，如果存在就不再安装，因此可以使用<code>-f</code>或<code>--force</code>参数，无论有无按照，都强制重新安装：</p>
-<pre><code>npm install &lt;packageName&gt; --force
-</code></pre><h3 id="–cache-min"><a href="#–cache-min" class="headerlink" title="–cache-min"></a>–cache-min</h3><p>所有模块都从缓存安装，这样就大大加快了下载速度</p>
-<pre><code>npm install --cache-min Infinity &lt;package-name&gt;
-</code></pre><h3 id="–save-或者–save-dev"><a href="#–save-或者–save-dev" class="headerlink" title="–save 或者–save-dev"></a>–save 或者–save-dev</h3><p>在当前目录生成一个package.json文件，记录项目信息（作者，命令设置，项目名称和版本号等）方便后续的项目添加和其他开发者使用。</p>
-<p>把模块信息保存到<code>dependencies</code>(生成环境依赖)中：</p>
-<pre><code>npm install packagename --save 或 -S
-</code></pre><p>把模块信息保存到<code>devDependencies</code>(开发环境依赖)中：</p>
-<pre><code>npm install packagename --save-dev 或 -D
-</code></pre><p>安装全局的模块（不加参数的时候默认安装本地模块）：</p>
-<pre><code>npm install packagename -g 或 --global
-</code></pre>
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。<br>自变量对象都是指向不同地址的。会返回false ，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;&apos;a&apos;:1&#125;;</span><br><span class="line">var obj2 = &#123;&apos;a&apos;:1&#125;;</span><br><span class="line">console.log(obj1  === obj2); //false</span><br></pre></td></tr></table></figure></p>
+<p>也不能将对象转换为string后判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(obj1)==JSON.stringify(obj2)</span><br></pre></td></tr></table></figure></p>
+<p>因为js的obect的存储具有无序性，即属性数序可能不一致，这种方式不准确。</p>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>检查对象的“值相等”我们是需要遍历的对象的每个属性，<br>逐一看看它们是否相等。其中需要考虑：</p>
+<p>1) 如果该属性值之一本身是对象，需要 <strong>递归调用函数</strong><br>2)选择递归这种模式，需要考虑到函数被改名要同时修改函数里面的函数名，即<code>isObjectValueEqual</code>被改名后，函数里面的<code>isObjectValueEqual</code>也需要修改为一致的函数名？<br>3) 如果属性值中的一个是<code>NaN</code>（在JavaScript中，等于它自身）<br>4) 如果一个属性的值为<code>undefined</code>，而另一个对象没有这个属性</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>1）<code>callee</code> 是 arguments 对象的一个属性。它可以用于引用该函数的函数体内当前正在执行的函数。但是！在严格模式下，第5版 ECMAScript (ES5) 禁止使用 <code>arguments.callee()</code>因此，即便考虑到上面场景2，但是处于规范，弃用<code>callee</code><br>2）使用<code>_typeof</code>函数来判断值类型和<code>have</code>来判断数组中是否含有某个元素。他们都来自我自己写的一个简单js函数库 <strong>f.js</strong> 。具体源码 [<a href="https://xiannv.github.io/js/f.js][1]这里不详细展开类型判断和数组问题">https://xiannv.github.io/js/f.js][1]这里不详细展开类型判断和数组问题</a></p>
+<pre><code>function isObjectValueEqual(a, b) {
+/*
+* @Author: floralin
+* @Date:   2017-08-09 11:14:15
+* @Last Modified by:   floralin
+* @Last Modified time: 2017-08-09 20:58:00
+* @Desc: 递归判断两个对象是否相等
+*/
+for (var aProps in a) {
+    var propName = aProps;
+    // If values of same property are not equal,
+    // objects are not equivalent
+    if (_typeof(a[propName]) != _typeof(b[propName])) {
+        return false
+    } else if (
+        [&quot;string&quot;, &quot;number&quot;, &quot;boolean&quot;, &quot;undefined&quot;, &quot;null&quot;].have(_typeof(a[propName])) &amp;&amp;
+        [&quot;string&quot;, &quot;number&quot;, &quot;boolean&quot;, &quot;undefined&quot;, &quot;null&quot;].have(_typeof(b[propName]))) {
+
+        if (a[propName] !== b[propName]) {
+            return false;
+        }
+    } else if (_typeof(a[propName]) == &quot;function&quot;) {
+        if (a[propName].toString() != b[propName].toString()) {
+            return false;
+        };
+    } else {
+        return isObjectValueEqual(a[propName], b[propName])
+    }
+}
+return true;
+}
+
+var obj1 = {
+    name: &quot;xiannv&quot;,
+    sex: &quot;female&quot;,
+    jump: function() {
+
+    },
+    children: [{
+        name: &quot;flora&quot;,
+        age: 12
+    }],
+};
+
+var obj2 = {
+    name: &quot;xiannv&quot;,
+    sex: &quot;female&quot;,
+    jump: function() {
+
+    },
+    children: [{
+        name: &quot;flora&quot;,
+        age: 12
+    }],
+
+};
+console.log(isObjectValueEqual(obj1, obj2));
+</code></pre><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>场景1，用户插入新数据。用户需要插入一条新纪录，用于对比现有的所有数据，避免用户重复插入相同数据。<br>场景2，发http请求。对比上一次请求的参数和这次是否相同，相同就不发出新请求。这个在需要提供多重筛选条件的数据展示或操作型应用，很常见用。<br>场景3，还有各种需要肉眼逐一对比两个错误日志等等是否完全相等的看瞎眼案例，手动复制到控制台，直接运行。<br>当然，上面的两个问题，还有其他不同的技术方案来解决。改造一下上面的代码，可以用来判断，对象b是否含有对象a的全部属性或者对象b的数据格式和对象a有什么差异等等，等等</p>
+
       
     </div>
     
@@ -348,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/14/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/02/14/Vue/" rel="next" title="Vue">
+                <i class="fa fa-chevron-left"></i> Vue
               </a>
             
           </div>
@@ -358,8 +397,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/14/Vue/" rel="prev" title="Vue">
-                Vue <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/14/前端监控平台实践思考/" rel="prev" title="前端监控平台实践思考">
+                前端监控平台实践思考 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -474,7 +513,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装过程"><span class="nav-number">1.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#–force"><span class="nav-number">2.1.</span> <span class="nav-text">–force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–cache-min"><span class="nav-number">2.2.</span> <span class="nav-text">–cache-min</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–save-或者–save-dev"><span class="nav-number">2.3.</span> <span class="nav-text">–save 或者–save-dev</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考"><span class="nav-number">2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">4.</span> <span class="nav-text">使用场景</span></a></li></ol></div>
             
 
           </div>

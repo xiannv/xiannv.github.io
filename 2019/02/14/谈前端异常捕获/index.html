@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta name="description" content="异常捕获方法try catchtry catch判断代码时候存在错误。优点：可以很好的捕获异常并进行响应处理，不让页面报错挂掉。缺点：需要在捕获异常的代码上进行包裹，会导致页面臃肿不堪，不适用于整个项目的异常捕获。 window.onerror参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="npm模块装机">
-<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/index.html">
+<meta property="og:title" content="谈前端异常捕获">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/14/谈前端异常捕获/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta property="og:description" content="异常捕获方法try catchtry catch判断代码时候存在错误。优点：可以很好的捕获异常并进行响应处理，不让页面报错挂掉。缺点：需要在捕获异常的代码上进行包裹，会导致页面臃肿不堪，不适用于整个项目的异常捕获。 window.onerror参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-14T03:12:14.150Z">
+<meta property="og:updated_time" content="2019-02-13T09:27:06.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="npm模块装机">
-<meta name="twitter:description" content="在cmd中输入npm install回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？ 安装过程 执行工程自身的preinstall, 定义的    preinstall钩子会被执行。 确定首层依赖模块，就是dependencies 和 devDependencies 属性中直接指定的模块 或者 后面的参数   工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，">
+<meta name="twitter:title" content="谈前端异常捕获">
+<meta name="twitter:description" content="异常捕获方法try catchtry catch判断代码时候存在错误。优点：可以很好的捕获异常并进行响应处理，不让页面报错挂掉。缺点：需要在捕获异常的代码上进行包裹，会导致页面臃肿不堪，不适用于整个项目的异常捕获。 window.onerror参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/14/谈前端异常捕获/">
 
 
 
 
 
-  <title>npm模块装机 | 每日一记</title>
+  <title>谈前端异常捕获 | 每日一记</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/14/谈前端异常捕获/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiannv">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">npm模块装机</h1>
+          <h1 class="post-title" itemprop="name headline">谈前端异常捕获</h1>
         
 
         <div class="post-meta">
@@ -299,32 +299,15 @@
       
 
       
-        <p>在cmd中输入<code>npm install</code>回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？</p>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ol>
-<li>执行工程自身的<code>preinstall</code>, 定义的    <code>preinstall</code>钩子会被执行。</li>
-<li>确定首层依赖模块，就是<code>dependencies</code> 和 <code>devDependencies</code> 属性中直接指定的模块 或者 后面的参数</li>
-</ol>
-<blockquote>
-<pre><code>工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，npm 会开启多进程从每个首层依赖模块开始逐步寻找更深层级的节点。
-</code></pre></blockquote>
-<ol start="3">
-<li>获取模块，npm 向 registry 查询模块压缩包的网址</li>
-<li>模块扁平化。上面提到的一棵完整的依赖树，其中可能包含大量重复模块，比如A依赖的模块B也依赖了，在npm3之前会严格按照依赖树的结构进行安装，因为会造成冗余，但是3开始默认加入了dedupe的过程，会遍历所有节点，逐个将模块放到根节点下，如果重复会丢弃</li>
-<li>安装模块，更新工程中的 node_modules，并执行模块中的生命周期函数</li>
-</ol>
-<p>总结 npm install 命令。默认会找到当前路径下的package.json。然后安装其中的依赖</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="–force"><a href="#–force" class="headerlink" title="–force"></a>–force</h3><p>install前会检查目录中是否已经存在指定模块，如果存在就不再安装，因此可以使用<code>-f</code>或<code>--force</code>参数，无论有无按照，都强制重新安装：</p>
-<pre><code>npm install &lt;packageName&gt; --force
-</code></pre><h3 id="–cache-min"><a href="#–cache-min" class="headerlink" title="–cache-min"></a>–cache-min</h3><p>所有模块都从缓存安装，这样就大大加快了下载速度</p>
-<pre><code>npm install --cache-min Infinity &lt;package-name&gt;
-</code></pre><h3 id="–save-或者–save-dev"><a href="#–save-或者–save-dev" class="headerlink" title="–save 或者–save-dev"></a>–save 或者–save-dev</h3><p>在当前目录生成一个package.json文件，记录项目信息（作者，命令设置，项目名称和版本号等）方便后续的项目添加和其他开发者使用。</p>
-<p>把模块信息保存到<code>dependencies</code>(生成环境依赖)中：</p>
-<pre><code>npm install packagename --save 或 -S
-</code></pre><p>把模块信息保存到<code>devDependencies</code>(开发环境依赖)中：</p>
-<pre><code>npm install packagename --save-dev 或 -D
-</code></pre><p>安装全局的模块（不加参数的时候默认安装本地模块）：</p>
-<pre><code>npm install packagename -g 或 --global
-</code></pre>
+        <h2 id="异常捕获方法"><a href="#异常捕获方法" class="headerlink" title="异常捕获方法"></a>异常捕获方法</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p><code>try catch</code>判断代码时候存在错误。<br>优点：可以很好的捕获异常并进行响应处理，不让页面报错挂掉。<br>缺点：需要在捕获异常的代码上进行包裹，会导致页面臃肿不堪，不适用于整个项目的异常捕获。</p>
+<h3 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h3><p>参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈信息</p>
+<p>优点：提供全局监听异常的功能。<br>缺点：跨域之后，无法捕获异常信息，统一返回script error。</p>
+<h3 id="使用windowerror异常捕获问题"><a href="#使用windowerror异常捕获问题" class="headerlink" title="使用windowerror异常捕获问题"></a>使用windowerror异常捕获问题</h3><p>针对上述所提到的跨域之后，无法捕获异常信息。<br>解决方案：script属性配置 <code>crossorigin=&quot;anonymous&quot;</code> 并且服务器添加<code>Access-Control-Allow-Origin</code></p>
+<h3 id="压缩后脚本定位"><a href="#压缩后脚本定位" class="headerlink" title="压缩后脚本定位"></a>压缩后脚本定位</h3><p>一般上线之前会对代码进行压缩，一方面节省源码体积，另外一方面合并多个文件，减少http请求数。这时候会出现压缩后无法找到原始报错位置的问题。<br>解决方案：利用webpack打包压缩后生成一份对应脚本的map文件就能进行追踪了，在webpack中开启source-map功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;  </span><br><span class="line">    \\...  </span><br><span class="line">    devtool: &apos;#source-map&apos;,  </span><br><span class="line">    \\...  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html" target="_blank" rel="noopener">《Source Map详解》</a></p>
+<h3 id="错误被框架自身捕获"><a href="#错误被框架自身捕获" class="headerlink" title="错误被框架自身捕获"></a>错误被框架自身捕获</h3><p>项目使用MVVM框架，window.onerror捕获不到异常，因为被框架自身的异常机制捕获了。比如Vue 2.x中使用<code>Vue.config.errorHandler</code>捕获全局异常</p>
+
       
     </div>
     
@@ -348,8 +331,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/14/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/02/14/前端监控平台实践思考/" rel="next" title="前端监控平台实践思考">
+                <i class="fa fa-chevron-left"></i> 前端监控平台实践思考
               </a>
             
           </div>
@@ -357,10 +340,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/14/Vue/" rel="prev" title="Vue">
-                Vue <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -474,7 +453,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装过程"><span class="nav-number">1.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#–force"><span class="nav-number">2.1.</span> <span class="nav-text">–force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–cache-min"><span class="nav-number">2.2.</span> <span class="nav-text">–cache-min</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–save-或者–save-dev"><span class="nav-number">2.3.</span> <span class="nav-text">–save 或者–save-dev</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常捕获方法"><span class="nav-number">1.</span> <span class="nav-text">异常捕获方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch"><span class="nav-number">1.1.</span> <span class="nav-text">try catch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-onerror"><span class="nav-number">1.2.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用windowerror异常捕获问题"><span class="nav-number">1.3.</span> <span class="nav-text">使用windowerror异常捕获问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩后脚本定位"><span class="nav-number">1.4.</span> <span class="nav-text">压缩后脚本定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误被框架自身捕获"><span class="nav-number">1.5.</span> <span class="nav-text">错误被框架自身捕获</span></a></li></ol></li></ol></div>
             
 
           </div>
