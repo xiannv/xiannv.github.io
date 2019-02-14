@@ -229,6 +229,273 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/14/npm模块装机/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiannv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="每日一记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/14/npm模块装机/" itemprop="url">npm模块装机</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T11:12:14+08:00">
+                2019-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在cmd中输入<code>npm install</code>回车后，能够帮我们装上相应的模块，这当中实现的过程是怎么样的呢？</p>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ol>
+<li>执行工程自身的<code>preinstall</code>, 定义的    <code>preinstall</code>钩子会被执行。</li>
+<li>确定首层依赖模块，就是<code>dependencies</code> 和 <code>devDependencies</code> 属性中直接指定的模块 或者 后面的参数</li>
+</ol>
+<blockquote>
+<pre><code>工程本身是整棵依赖树的根节点，每个首层依赖模块都是根节点下面的一棵子树，npm 会开启多进程从每个首层依赖模块开始逐步寻找更深层级的节点。
+</code></pre></blockquote>
+<ol start="3">
+<li>获取模块，npm 向 registry 查询模块压缩包的网址</li>
+<li>模块扁平化。上面提到的一棵完整的依赖树，其中可能包含大量重复模块，比如A依赖的模块B也依赖了，在npm3之前会严格按照依赖树的结构进行安装，因为会造成冗余，但是3开始默认加入了dedupe的过程，会遍历所有节点，逐个将模块放到根节点下，如果重复会丢弃</li>
+<li>安装模块，更新工程中的 node_modules，并执行模块中的生命周期函数</li>
+</ol>
+<p>总结 npm install 命令。默认会找到当前路径下的package.json。然后安装其中的依赖</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="–force"><a href="#–force" class="headerlink" title="–force"></a>–force</h3><p>install前会检查目录中是否已经存在指定模块，如果存在就不再安装，因此可以使用<code>-f</code>或<code>--force</code>参数，无论有无按照，都强制重新安装：</p>
+<pre><code>npm install &lt;packageName&gt; --force
+</code></pre><h3 id="–cache-min"><a href="#–cache-min" class="headerlink" title="–cache-min"></a>–cache-min</h3><p>所有模块都从缓存安装，这样就大大加快了下载速度</p>
+<pre><code>npm install --cache-min Infinity &lt;package-name&gt;
+</code></pre><h3 id="–save-或者–save-dev"><a href="#–save-或者–save-dev" class="headerlink" title="–save 或者–save-dev"></a>–save 或者–save-dev</h3><p>在当前目录生成一个package.json文件，记录项目信息（作者，命令设置，项目名称和版本号等）方便后续的项目添加和其他开发者使用。</p>
+<p>把模块信息保存到<code>dependencies</code>(生成环境依赖)中：</p>
+<pre><code>npm install packagename --save 或 -S
+</code></pre><p>把模块信息保存到<code>devDependencies</code>(开发环境依赖)中：</p>
+<pre><code>npm install packagename --save-dev 或 -D
+</code></pre><p>安装全局的模块（不加参数的时候默认安装本地模块）：</p>
+<pre><code>npm install packagename -g 或 --global
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/13/前端监控平台实践思考/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiannv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="每日一记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/13/前端监控平台实践思考/" itemprop="url">前端监控平台实践思考</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-13T17:04:37+08:00">
+                2019-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://note.youdao.com/yws/public/resource/5630b495fde2160d07b2ac3f82653f39/xmlnote/WEBRESOURCEd0d9b0b4a3fd0825ed6773f6bed5cf12/1773" alt="系统实现需要考虑的地方"> </p>
+<h3 id="错误拦截和上报"><a href="#错误拦截和上报" class="headerlink" title="错误拦截和上报"></a>错误拦截和上报</h3><p>具体可看本blog另外一篇文章<a href="https://xiannv.github.io/2019/02/13/谈前端异常捕获/">《谈前端异常捕获》</a></p>
+<p>采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。</p>
+<h3 id="场景还原"><a href="#场景还原" class="headerlink" title="场景还原"></a>场景还原</h3><p><img src="https://user-gold-cdn.xitu.io/2017/9/13/b1cbae1f29632a189e586f176d1e556c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="场景还原法-监控数据分析"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/13/判断两个object是否相等/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -412,7 +679,7 @@ console.log(isObjectValueEqual(obj1, obj2));
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/13/谈前端异常捕获与上报/">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/13/谈前端异常捕获/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiannv">
@@ -431,7 +698,7 @@ console.log(isObjectValueEqual(obj1, obj2));
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/13/谈前端异常捕获与上报/" itemprop="url">谈前端异常捕获与上报</a></h1>
+                <a class="post-title-link" href="/2019/02/13/谈前端异常捕获/" itemprop="url">谈前端异常捕获</a></h1>
         
 
         <div class="post-meta">
@@ -491,6 +758,156 @@ console.log(isObjectValueEqual(obj1, obj2));
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;  </span><br><span class="line">    \\...  </span><br><span class="line">    devtool: &apos;#source-map&apos;,  </span><br><span class="line">    \\...  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html" target="_blank" rel="noopener">《Source Map详解》</a></p>
 <h3 id="错误被框架自身捕获"><a href="#错误被框架自身捕获" class="headerlink" title="错误被框架自身捕获"></a>错误被框架自身捕获</h3><p>项目使用MVVM框架，window.onerror捕获不到异常，因为被框架自身的异常机制捕获了。比如Vue 2.x中使用<code>Vue.config.errorHandler</code>捕获全局异常</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/13/Vue/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiannv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="每日一记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/13/Vue/" itemprop="url">Vue</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-13T16:48:54+08:00">
+                2019-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Vue的目标是实现 <code>响应的数据绑定</code> 和 <code>组合的视图组件</code>，所以其核心有两块：</p>
+<ul>
+<li>数据绑定系统</li>
+<li>组件系统</li>
+</ul>
+<p>数据通过在HTML模板中的指令和 “Mustache” 语法，绑定到对应的HTML元素上，其底层是JavaScript对象的存取器属性  和 原生javascript事件。<br>组件系统则通过扩展的Vue实例，来渲染位于HTML中的类似于自定义元素的Vue组件，从而实现独立可复用的组件。</p>
+<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><h3 id="组件分类"><a href="#组件分类" class="headerlink" title="组件分类"></a>组件分类</h3><ul>
+<li>通用组件，大部分UI库都是这种组件，比如表单布局弹窗等  </li>
+<li>业务组件，和需求挂钩，会被复用，比如抽奖摇一摇等</li>
+<li>页面组件，每个页面都是一个组件，不会被复用</li>
+</ul>
+<h3 id="第三方组件"><a href="#第三方组件" class="headerlink" title="第三方组件"></a>第三方组件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install iview --save</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://www.iviewui.com/docs/guide/install" target="_blank" rel="noopener">IView</a></p>
+<h3 id="组件注册"><a href="#组件注册" class="headerlink" title="组件注册"></a>组件注册</h3><p>HTML中名称是不区分大小写的，所以浏览器所有大写字符解析成小写字符，这意味着当你使用dom中模版时，AutoStaffList 需要用等价的auto-staff-list形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//全局注册</span><br><span class="line">Vue.component(&apos;AutoStaffList&apos;,&#123;&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">auto-staff-list</span>&gt;</span><span class="tag">&lt;/<span class="name">auto-staff-list</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>局部注册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">	el:&apos;#app&apos;,</span><br><span class="line">	components:&#123;</span><br><span class="line">		&apos;AutoStaffList&apos;:AutoStaffList</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h3><p>使用v-bind:xx给子组件传递数据，组件内部使用props字段接收，使用和挂载在this上的数据没有本质区别，但是需要注意props的数据子组件不能直接修改，这是为了单向数据流的设计，props只能通知父组件进行修改</p>
+<h4 id="使用provide-amp-inject内部共享数据"><a href="#使用provide-amp-inject内部共享数据" class="headerlink" title="使用provide&amp;inject内部共享数据"></a>使用provide&amp;inject内部共享数据</h4><p>业务中不常用的api，主要用于高阶组件和组件库使用，用来和所有子孙元素提供数据，类似react的上下文。</p>
+<p>思考：Form的核心是做数据校验，一个Form里包含多个FormItem，当点击按钮的时候，需要逐一对每个输入框进行校验，所以每个FormItem都需要有一个验证方法，汇总到Form返回</p>
+<ol>
+<li>KForm负责定义校验规则</li>
+<li>KFormItem负责显示错误数据</li>
+<li>KInput负责数据双向绑定</li>
+</ol>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="v-if和v-show的区别"><a href="#v-if和v-show的区别" class="headerlink" title="v-if和v-show的区别"></a>v-if和v-show的区别</h3><p><strong>编译区别</strong>： <code>v-if</code>是惰性的，如果初始条件为假则这个元素不会被编译，只有当条件第一次为真时，Vue才编译并缓存编译结果以供后续使用；<code>v-show</code>的元素则直接编译。</p>
+<p><strong>显示区别：</strong> <code>v-if</code>是真实的在HTML中重建或者销毁这个元素，<code>v-show</code>则只是通过display来控制，简单得多。</p>
+<p><strong>结论：</strong> <code>v-if</code>有更高的切换消耗而v-show有更高的初始渲染消耗，频繁切换用<code>v-show</code>，条件稳定用v-if</p>
+<p><a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Theme-next Document</a></p>
 
           
         
@@ -702,7 +1119,7 @@ console.log(isObjectValueEqual(obj1, obj2));
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
