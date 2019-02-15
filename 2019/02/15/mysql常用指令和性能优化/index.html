@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="title:mysql 常用指令 和 性能优化常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost">
+<meta name="description" content="常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost_key` (`id`) ON DELETE N">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一记">
+<meta property="og:title" content="mysql 常用指令 和 性能优化">
 <meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/15/mysql常用指令和性能优化/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="title:mysql 常用指令 和 性能优化常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost">
+<meta property="og:description" content="常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost_key` (`id`) ON DELETE N">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-15T08:43:58.668Z">
+<meta property="og:updated_time" content="2019-02-15T10:25:23.715Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一记">
-<meta name="twitter:description" content="title:mysql 常用指令 和 性能优化常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost">
+<meta name="twitter:title" content="mysql 常用指令 和 性能优化">
+<meta name="twitter:description" content="常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost_key` (`id`) ON DELETE N">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title> | 每日一记</title>
+  <title>mysql 常用指令 和 性能优化 | 每日一记</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">mysql 常用指令 和 性能优化</h1>
         
 
         <div class="post-meta">
@@ -299,8 +299,7 @@
       
 
       
-        <hr>
-<h2 id="title-mysql-常用指令-和-性能优化"><a href="#title-mysql-常用指令-和-性能优化" class="headerlink" title="title:mysql 常用指令 和 性能优化"></a>title:mysql 常用指令 和 性能优化</h2><h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="外键删除失败错误"><a href="#外键删除失败错误" class="headerlink" title="外键删除失败错误"></a>外键删除失败错误</h3><pre><code>Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost_key` (`id`) ON DELETE NO ACTION
+        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="外键删除失败错误"><a href="#外键删除失败错误" class="headerlink" title="外键删除失败错误"></a>外键删除失败错误</h3><pre><code>Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost_key` (`id`) ON DELETE NO ACTION
 </code></pre><p>关闭唯一性校验<br>    SET FOREIGN_KEY_CHECKS = 0;</p>
 <h3 id="dump备份"><a href="#dump备份" class="headerlink" title="dump备份"></a>dump备份</h3><p>使用密码和帐号名连接主机，将wxdoc数据库中数据备份到sql文件中</p>
 <pre><code>mysqldump -h10.224.144.80 -uqspace -ppassword table_name &gt; 20160303.sql
@@ -350,8 +349,8 @@ mysqldump -h10.223.142.86 -uroot -ppassword costcollect
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/15/js常用技巧/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/15/js常用技巧/" rel="prev" title="js常用小技巧">
+                js常用小技巧 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -429,7 +428,7 @@ mysqldump -h10.223.142.86 -uroot -ppassword costcollect
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -466,7 +465,7 @@ mysqldump -h10.223.142.86 -uroot -ppassword costcollect
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-mysql-常用指令-和-性能优化"><span class="nav-number">1.</span> <span class="nav-text">title:mysql 常用指令 和 性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用指令"><span class="nav-number">2.</span> <span class="nav-text">常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外键删除失败错误"><span class="nav-number">2.1.</span> <span class="nav-text">外键删除失败错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dump备份"><span class="nav-number">2.2.</span> <span class="nav-text">dump备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-number">3.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">3.1.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#explain-你的select查询"><span class="nav-number">3.2.</span> <span class="nav-text">explain 你的select查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-LIMIT-1"><span class="nav-number">3.3.</span> <span class="nav-text">使用 LIMIT 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为搜索字段建索引"><span class="nav-number">3.4.</span> <span class="nav-text">为搜索字段建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为每张表设置一个ID"><span class="nav-number">3.5.</span> <span class="nav-text">为每张表设置一个ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-ENUM-而不是-VARCHAR"><span class="nav-number">3.6.</span> <span class="nav-text">使用 ENUM 而不是 VARCHAR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把IP地址存成-UNSIGNED-INT"><span class="nav-number">3.7.</span> <span class="nav-text">把IP地址存成 UNSIGNED INT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固定长度表更快"><span class="nav-number">3.8.</span> <span class="nav-text">固定长度表更快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#越小的列会越快"><span class="nav-number">3.9.</span> <span class="nav-text">越小的列会越快</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用指令"><span class="nav-number">1.</span> <span class="nav-text">常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外键删除失败错误"><span class="nav-number">1.1.</span> <span class="nav-text">外键删除失败错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dump备份"><span class="nav-number">1.2.</span> <span class="nav-text">dump备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-number">2.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">2.1.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#explain-你的select查询"><span class="nav-number">2.2.</span> <span class="nav-text">explain 你的select查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-LIMIT-1"><span class="nav-number">2.3.</span> <span class="nav-text">使用 LIMIT 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为搜索字段建索引"><span class="nav-number">2.4.</span> <span class="nav-text">为搜索字段建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为每张表设置一个ID"><span class="nav-number">2.5.</span> <span class="nav-text">为每张表设置一个ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-ENUM-而不是-VARCHAR"><span class="nav-number">2.6.</span> <span class="nav-text">使用 ENUM 而不是 VARCHAR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把IP地址存成-UNSIGNED-INT"><span class="nav-number">2.7.</span> <span class="nav-text">把IP地址存成 UNSIGNED INT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固定长度表更快"><span class="nav-number">2.8.</span> <span class="nav-text">固定长度表更快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#越小的列会越快"><span class="nav-number">2.9.</span> <span class="nav-text">越小的列会越快</span></a></li></ol></li></ol></div>
             
 
           </div>
