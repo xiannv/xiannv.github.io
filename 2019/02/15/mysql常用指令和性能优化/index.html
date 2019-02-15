@@ -79,20 +79,17 @@
 
 
 
-<meta name="description" content="错误拦截和上报具体可看本blog另外一篇文章《谈前端异常捕获》 采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。 场景还原">
+<meta name="description" content="title:mysql 常用指令 和 性能优化常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端监控平台实践思考">
-<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/14/前端监控平台实践思考/index.html">
+<meta property="og:title" content="每日一记">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/15/mysql常用指令和性能优化/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="错误拦截和上报具体可看本blog另外一篇文章《谈前端异常捕获》 采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。 场景还原">
+<meta property="og:description" content="title:mysql 常用指令 和 性能优化常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/5630b495fde2160d07b2ac3f82653f39/xmlnote/WEBRESOURCEd0d9b0b4a3fd0825ed6773f6bed5cf12/1773">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/9/13/b1cbae1f29632a189e586f176d1e556c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2019-02-13T09:45:01.349Z">
+<meta property="og:updated_time" content="2019-02-15T08:43:58.668Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端监控平台实践思考">
-<meta name="twitter:description" content="错误拦截和上报具体可看本blog另外一篇文章《谈前端异常捕获》 采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。 场景还原">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/5630b495fde2160d07b2ac3f82653f39/xmlnote/WEBRESOURCEd0d9b0b4a3fd0825ed6773f6bed5cf12/1773">
+<meta name="twitter:title" content="每日一记">
+<meta name="twitter:description" content="title:mysql 常用指令 和 性能优化常用指令外键删除失败错误Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost">
 
 
 
@@ -122,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/14/前端监控平台实践思考/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/15/mysql常用指令和性能优化/">
 
 
 
 
 
-  <title>前端监控平台实践思考 | 每日一记</title>
+  <title> | 每日一记</title>
   
 
 
@@ -235,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/14/前端监控平台实践思考/">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/15/mysql常用指令和性能优化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiannv">
@@ -252,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">前端监控平台实践思考</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -264,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T15:04:43+08:00">
-                2019-02-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T16:43:58+08:00">
+                2019-02-15
               </time>
             
 
@@ -302,10 +299,23 @@
       
 
       
-        <p><img src="https://note.youdao.com/yws/public/resource/5630b495fde2160d07b2ac3f82653f39/xmlnote/WEBRESOURCEd0d9b0b4a3fd0825ed6773f6bed5cf12/1773" alt="系统实现需要考虑的地方"> </p>
-<h3 id="错误拦截和上报"><a href="#错误拦截和上报" class="headerlink" title="错误拦截和上报"></a>错误拦截和上报</h3><p>具体可看本blog另外一篇文章<a href="https://xiannv.github.io/2019/02/13/谈前端异常捕获/">《谈前端异常捕获》</a></p>
-<p>采取单请求上报的方式，上报记录都存在Localstorage，每次将当前记录到监控信息列表一起上报，成功后再继续上报。</p>
-<h3 id="场景还原"><a href="#场景还原" class="headerlink" title="场景还原"></a>场景还原</h3><p><img src="https://user-gold-cdn.xitu.io/2017/9/13/b1cbae1f29632a189e586f176d1e556c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="场景还原法-监控数据分析"></p>
+        <hr>
+<h2 id="title-mysql-常用指令-和-性能优化"><a href="#title-mysql-常用指令-和-性能优化" class="headerlink" title="title:mysql 常用指令 和 性能优化"></a>title:mysql 常用指令 和 性能优化</h2><h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="外键删除失败错误"><a href="#外键删除失败错误" class="headerlink" title="外键删除失败错误"></a>外键删除失败错误</h3><pre><code>Cannot delete or update a parent row: a foreign key constraint fails (`cost`.`cost_data`, CONSTRAINT `cost_data_ibfk_1` FOREIGN KEY (`cost_key_id`) REFERENCES `cost_key` (`id`) ON DELETE NO ACTION
+</code></pre><p>关闭唯一性校验<br>    SET FOREIGN_KEY_CHECKS = 0;</p>
+<h3 id="dump备份"><a href="#dump备份" class="headerlink" title="dump备份"></a>dump备份</h3><p>使用密码和帐号名连接主机，将wxdoc数据库中数据备份到sql文件中</p>
+<pre><code>mysqldump -h10.224.144.80 -uqspace -ppassword table_name &gt; 20160303.sql
+mysqldump -h10.223.142.86 -uroot -ppassword costcollect
+</code></pre><h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>为查询缓存优化你的查询。如果查询缓存打开，mysql会优先检查这个查询是否命中查询缓存中的数据。当很多相同的查询被执行了多次，后续相同的查询就不用操作表（解析、优化、执行等）而直接访问内存结果。</p>
+<p><a href="https://www.jianshu.com/p/5c3ddf9a454c" target="_blank" rel="noopener">具体文章</a></p>
+<h3 id="explain-你的select查询"><a href="#explain-你的select查询" class="headerlink" title="explain 你的select查询"></a>explain 你的select查询</h3><p>explain关键字uk恶意让你知道MySQL是如何处理你的SQL语句的，帮你分析你的查询语句或是表结构的性能瓶颈。</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/explain.html" target="_blank" rel="noopener">具体文章</a></p>
+<h3 id="使用-LIMIT-1"><a href="#使用-LIMIT-1" class="headerlink" title="使用 LIMIT 1"></a>使用 LIMIT 1</h3><p>当只要一行数据或者你只需要一行数据的时候使用 LIMIT 1 </p>
+<h3 id="为搜索字段建索引"><a href="#为搜索字段建索引" class="headerlink" title="为搜索字段建索引"></a>为搜索字段建索引</h3><p>索引并不一定就是给主键或是唯一的字段。如果在表中，某个字段会经常用来做搜索，那么请为其建立索引（索引关键字除外，LIKE ‘%apple%’）</p>
+<h3 id="为每张表设置一个ID"><a href="#为每张表设置一个ID" class="headerlink" title="为每张表设置一个ID"></a>为每张表设置一个ID</h3><p>为数据库里的每张表都设置一个ID做为其主键，而且最好的是一个INT型的（推荐使用UNSIGNED），并设置上自动增加的AUTO_INCREMENT标志。<br>不要使用varchar类来当主键，会使得性能下降。</p>
+<h3 id="使用-ENUM-而不是-VARCHAR"><a href="#使用-ENUM-而不是-VARCHAR" class="headerlink" title="使用 ENUM 而不是 VARCHAR"></a>使用 ENUM 而不是 VARCHAR</h3><p>字段的取值是有限而且固定的，使用 ENUM 而不是 VARCHAR。ENUM 类型是非常快和紧凑的。在实际上，其保存的是 TINYINT，但其外表上显示为字符串。</p>
+<h3 id="把IP地址存成-UNSIGNED-INT"><a href="#把IP地址存成-UNSIGNED-INT" class="headerlink" title="把IP地址存成 UNSIGNED INT"></a>把IP地址存成 UNSIGNED INT</h3><p>很多程序员都会创建一个 VARCHAR(15) 字段来存放字符串形式的IP而不是整形的IP。如果你用整形来存放，只需要4个字节，并且你可以有定长的字段，在查询ip between ip1 and ip2时候会带来更大优势。</p>
+<h3 id="固定长度表更快"><a href="#固定长度表更快" class="headerlink" title="固定长度表更快"></a>固定长度表更快</h3><p>固定长度的表会提高性能，因为MySQL搜寻得会更快一些，因为这些固定的长度是很容易计算下一个数据的偏移量的，所以读取的自然也会很快。而如果字段不是定长的，那么，每一次要找下一条的话，需要程序找到主键。</p>
+<h3 id="越小的列会越快"><a href="#越小的列会越快" class="headerlink" title="越小的列会越快"></a>越小的列会越快</h3><p>对于大多数的数据库引擎来说，硬盘操作可能是最重大的瓶颈。所以，把你的数据变得紧凑会对这种情况非常有帮助，因为这减少了对硬盘的访问。</p>
 
       
     </div>
@@ -330,8 +340,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/14/判断两个object是否相等/" rel="next" title="判断两个object是否相等">
-                <i class="fa fa-chevron-left"></i> 判断两个object是否相等
+              <a href="/2019/02/14/谈前端异常捕获/" rel="next" title="谈前端异常捕获">
+                <i class="fa fa-chevron-left"></i> 谈前端异常捕获
               </a>
             
           </div>
@@ -340,8 +350,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/14/谈前端异常捕获/" rel="prev" title="谈前端异常捕获">
-                谈前端异常捕获 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/15/js常用技巧/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -456,7 +466,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误拦截和上报"><span class="nav-number">1.</span> <span class="nav-text">错误拦截和上报</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景还原"><span class="nav-number">2.</span> <span class="nav-text">场景还原</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-mysql-常用指令-和-性能优化"><span class="nav-number">1.</span> <span class="nav-text">title:mysql 常用指令 和 性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用指令"><span class="nav-number">2.</span> <span class="nav-text">常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外键删除失败错误"><span class="nav-number">2.1.</span> <span class="nav-text">外键删除失败错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dump备份"><span class="nav-number">2.2.</span> <span class="nav-text">dump备份</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-number">3.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">3.1.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#explain-你的select查询"><span class="nav-number">3.2.</span> <span class="nav-text">explain 你的select查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-LIMIT-1"><span class="nav-number">3.3.</span> <span class="nav-text">使用 LIMIT 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为搜索字段建索引"><span class="nav-number">3.4.</span> <span class="nav-text">为搜索字段建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为每张表设置一个ID"><span class="nav-number">3.5.</span> <span class="nav-text">为每张表设置一个ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-ENUM-而不是-VARCHAR"><span class="nav-number">3.6.</span> <span class="nav-text">使用 ENUM 而不是 VARCHAR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把IP地址存成-UNSIGNED-INT"><span class="nav-number">3.7.</span> <span class="nav-text">把IP地址存成 UNSIGNED INT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固定长度表更快"><span class="nav-number">3.8.</span> <span class="nav-text">固定长度表更快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#越小的列会越快"><span class="nav-number">3.9.</span> <span class="nav-text">越小的列会越快</span></a></li></ol></li></ol></div>
             
 
           </div>
