@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="1，margin collapse（margin崩塌）在CSS中，两个或多个毗邻的普通流中的盒子（可能是父子元素，也可能是兄弟元素）在垂直方向上的外边距会发生叠加，这种形成的外边距称之为外边距叠加。 如何避免margin collapse？  采用同一方向的margin值。比如都margin-bottom 触发 block formatting context float不为none overfl">
+<meta name="description" content="title： 用户行为数据收集方案调研​​​用户行为数据采集，指的是针对特定用户行为或事件进行 捕抓、处理和发送的相关技术和实施过程 背景必要性 了解用户行为和功能使用情况 增加问题定位便利性  目前问题 系统已有功能无上报，无法获取每个功能用户使用情况 无法获取用户操作轨迹，用户随机问题定位难  价值 获取准确的行为数据，针对用户使用习惯进行优化和测试，提高操作效率和用户体验 获取用户完整操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS代码建议">
-<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/15/CSS代码建议/index.html">
+<meta property="og:title" content="每日一记">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2019/02/21/无埋点上报/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="1，margin collapse（margin崩塌）在CSS中，两个或多个毗邻的普通流中的盒子（可能是父子元素，也可能是兄弟元素）在垂直方向上的外边距会发生叠加，这种形成的外边距称之为外边距叠加。 如何避免margin collapse？  采用同一方向的margin值。比如都margin-bottom 触发 block formatting context float不为none overfl">
+<meta property="og:description" content="title： 用户行为数据收集方案调研​​​用户行为数据采集，指的是针对特定用户行为或事件进行 捕抓、处理和发送的相关技术和实施过程 背景必要性 了解用户行为和功能使用情况 增加问题定位便利性  目前问题 系统已有功能无上报，无法获取每个功能用户使用情况 无法获取用户操作轨迹，用户随机问题定位难  价值 获取准确的行为数据，针对用户使用习惯进行优化和测试，提高操作效率和用户体验 获取用户完整操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-18T03:00:38.505Z">
+<meta property="og:image" content="https://note.youdao.com/ynoteshare1/images/replace-img.png">
+<meta property="og:updated_time" content="2019-02-22T09:04:34.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS代码建议">
-<meta name="twitter:description" content="1，margin collapse（margin崩塌）在CSS中，两个或多个毗邻的普通流中的盒子（可能是父子元素，也可能是兄弟元素）在垂直方向上的外边距会发生叠加，这种形成的外边距称之为外边距叠加。 如何避免margin collapse？  采用同一方向的margin值。比如都margin-bottom 触发 block formatting context float不为none overfl">
+<meta name="twitter:title" content="每日一记">
+<meta name="twitter:description" content="title： 用户行为数据收集方案调研​​​用户行为数据采集，指的是针对特定用户行为或事件进行 捕抓、处理和发送的相关技术和实施过程 背景必要性 了解用户行为和功能使用情况 增加问题定位便利性  目前问题 系统已有功能无上报，无法获取每个功能用户使用情况 无法获取用户操作轨迹，用户随机问题定位难  价值 获取准确的行为数据，针对用户使用习惯进行优化和测试，提高操作效率和用户体验 获取用户完整操作">
+<meta name="twitter:image" content="https://note.youdao.com/ynoteshare1/images/replace-img.png">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/15/CSS代码建议/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/02/21/无埋点上报/">
 
 
 
 
 
-  <title>CSS代码建议 | 每日一记</title>
+  <title> | 每日一记</title>
   
 
 
@@ -232,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/15/CSS代码建议/">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/02/21/无埋点上报/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiannv">
@@ -249,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CSS代码建议</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -261,8 +263,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-15T18:25:07+08:00">
-                2019-02-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-21T15:07:40+08:00">
+                2019-02-21
               </time>
             
 
@@ -299,41 +301,64 @@
       
 
       
-        <h3 id="1，margin-collapse（margin崩塌）"><a href="#1，margin-collapse（margin崩塌）" class="headerlink" title="1，margin collapse（margin崩塌）"></a>1，margin collapse（margin崩塌）</h3><p>在CSS中，两个或多个毗邻的普通流中的盒子（可能是父子元素，也可能是兄弟元素）在垂直方向上的外边距会发生叠加，这种形成的外边距称之为外边距叠加。</p>
-<p>如何避免margin collapse？</p>
+        <hr>
+<h2 id="title：-用户行为数据收集方案调研"><a href="#title：-用户行为数据收集方案调研" class="headerlink" title="title： 用户行为数据收集方案调研"></a>title： 用户行为数据收集方案调研</h2><p>​<br>​<br>​<br>用户行为数据采集，指的是针对特定用户行为或事件进行 捕抓、处理和发送的相关技术和实施过程</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="必要性"><a href="#必要性" class="headerlink" title="必要性"></a>必要性</h3><ul>
+<li>了解用户行为和功能使用情况</li>
+<li>增加问题定位便利性</li>
+</ul>
+<h3 id="目前问题"><a href="#目前问题" class="headerlink" title="目前问题"></a>目前问题</h3><ul>
+<li>系统已有功能无上报，无法获取每个功能用户使用情况</li>
+<li>无法获取用户操作轨迹，用户随机问题定位难</li>
+</ul>
+<h3 id="价值"><a href="#价值" class="headerlink" title="价值"></a>价值</h3><ul>
+<li>获取准确的行为数据，针对用户使用习惯进行优化和测试，提高操作效率和用户体验</li>
+<li>获取用户完整操作轨迹，快速重现，及时定位和排查问题</li>
+<li>为应用可用性打下基础，较好地关注变更和历史数据回溯</li>
+</ul>
+<h2 id="方案调研"><a href="#方案调研" class="headerlink" title="方案调研"></a>方案调研</h2><h3 id="业界方案"><a href="#业界方案" class="headerlink" title="业界方案"></a>业界方案</h3><ul>
+<li>代码埋点</li>
+<li>全埋点</li>
+<li>无埋点</li>
+</ul>
+<h3 id="方案对比"><a href="#方案对比" class="headerlink" title="方案对比"></a>方案对比</h3><p><img src="https://note.youdao.com/ynoteshare1/images/replace-img.png" alt=""></p>
+<p>避免前期开发给元素绑定大量工作量，提升埋点工作的效率和易用性，同时兼顾页面加载性能，最佳采用无埋点方案。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="方案思路"><a href="#方案思路" class="headerlink" title="方案思路"></a>方案思路</h3><p>前端监控上报，后端解析。</p>
 <ul>
-<li>采用同一方向的margin值。比如都margin-bottom</li>
-<li>触发 <a href="http://kayosite.com/block-formatting-contexts-in-detail.html" target="_blank" rel="noopener">block formatting context</a><ol>
-<li>float不为none</li>
-<li>overflow不为visible</li>
-<li>display设为‘table-cell’, ‘table-caption’, 或‘inline-block’</li>
-<li>position既不是static也不是relative</li>
-<li>zoom:1, IE的hasLayout特性会建立一个新的block formatting context</li>
-</ol>
+<li>主页面嵌入js下载代码，并进行无埋点模块初始化</li>
+<li>前端拉取用户配置后，解析存储用户设置的监控事件，</li>
+<li>用户操作后获取被操作元素，上报相关属性和xpath，以便后续定位</li>
+<li>web负责解析上报请求，根据解析到的参数和值塞如数据库存储</li>
+</ul>
+<h3 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h3><h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><h3 id="上报的信息"><a href="#上报的信息" class="headerlink" title="上报的信息"></a>上报的信息</h3><p><strong>页面信息</strong></p>
+<ul>
+<li>title（document.title）</li>
+<li>referer（上次跳转链接,document.referrer）</li>
+<li>用户显示分辨率（window.screen）</li>
+<li>浏览器信息（navigator.userAgent）</li>
+</ul>
+<p><strong>用户信息</strong></p>
+<ul>
+<li>cookie信息（document.cookie）</li>
+</ul>
+<p><strong>业务相关信息</strong></p>
+<ul>
+<li>用户自定义的事件跟踪、业务数据（如单号等）</li>
+</ul>
+<h3 id="实现难点"><a href="#实现难点" class="headerlink" title="实现难点"></a>实现难点</h3><ul>
+<li><p>1，确保控件唯一性<br>为了避免classname相同，避免使用classname作为标识。动态hook埋点，添加唯一属性值，如：自定义属性data-report</p>
+</li>
+<li><p>2，定位元素<br>采用web UI 自动化原理，通过xpath定位到页面元素。可视化跟踪视图</p>
+</li>
+<li><p>3，如何将收集到的信息整合，还原用户轨迹<br>结合操作时间，用户信息等还原用户操作轨迹</p>
+</li>
+<li><p>4，避免请求频繁，减少服务器压力<br>设定缓存池，合并多次请求，并设置发送间隔</p>
+</li>
+<li><p>5，输出日志整理问题<br>单纯的文字其实不方便定位问题，前期没有跟踪视图的时候，对数据进行整理，提高可读性很关键</p>
+</li>
+<li><p>6，移动端还需要考虑其他用户操作事件<br>手势动作，列表点击，弹窗点击，系统返回按钮点击等</p>
 </li>
 </ul>
-<h3 id="2，使用flexbox进行布局"><a href="#2，使用flexbox进行布局" class="headerlink" title="2，使用flexbox进行布局"></a>2，使用flexbox进行布局</h3><p>传统布局中我们习惯使用floats或者inline-blocks，不过它们更适合于格式化文档，而不是整个网站。而flexbox是专门用于进行布局的工具。</p>
-<p>具体用法？</p>
-<pre><code>.container{
-     display:flex;
-     display:-webkit-flex;
-}
-</code></pre><h3 id="3，使用css-reset"><a href="#3，使用css-reset" class="headerlink" title="3，使用css reset"></a>3，使用css reset</h3><p>虽然这些年随着浏览器的迅速发展与规范的统一，浏览器特性碎片化的情况有所改善，但是<strong>不同浏览器之间仍旧存在很多的行为差异</strong>。而解决这种问题的最好方法是使用某个css Reset来为所有的元素设置同意的样式，保证在一个相对统一干净的样式表基础上开始工作。</p>
-<p><a href="http://jerryzou.com/posts/aboutNormalizeCss/" target="_blank" rel="noopener">normalize.css</a> ,minirest 以及ress的用法？</p>
-<h3 id="4，border-box和content-box"><a href="#4，border-box和content-box" class="headerlink" title="4，border-box和content-box"></a>4，border-box和content-box</h3><p>默认值为content-box，即当设置某个元素的h/w属性时，仅仅会作用于其内容尺寸，而所有的内边距与边都是在其之上累加120 = (100+2*10)</p>
-<p><strong>border-box内边距与边是包含在w/h之中</strong>，更加方便进行样式布局，在父元素设置高宽限制而不担心子元素的内边距或者打破这种限制。</p>
-<h3 id="5，尽可能使用低优先级的选择器"><a href="#5，尽可能使用低优先级的选择器" class="headerlink" title="5，尽可能使用低优先级的选择器"></a>5，尽可能使用低优先级的选择器</h3><p>并不是所有的css选择器的优先级都一样，很多初学者在使用css选择器的时候都是考虑需从新的特性去复写全部的继承特性，不过一旦某个元素多状态就麻烦了：</p>
-<pre><code>a#blue-btn{
-     background-color:blue;
-}
-a.active{
-     background-color:red
-}
-</code></pre><p>id选择器优先级高于class选择器，因此上面代码无效。ID(#id)&gt;Class(.class)&gt;Type(header)</p>
-<h3 id="6，em-rem和pixel"><a href="#6，em-rem和pixel" class="headerlink" title="6，em,rem和pixel"></a>6，em,rem和pixel</h3><p>适用于不同的场景，不同的开发与项目都有其特定的设置，因此并没有通用的规则来决定应该使用哪个单位：</p>
-<p>em 其基本单位即为当前元素的font-size值，经常适用于media-queries中，em是特别适用于响应式开发中。。</p>
-<p>rem 其是相对于html属性的单位，可以保证文本段落真正的响应式尺寸特性。？？</p>
-<p>px 并没有任何的动态扩展性，它们往往用于描述绝对单位，并且可以在设置值与最终的显示效果之间保留一定的一致性。</p>
 
       
     </div>
@@ -358,8 +383,8 @@ a.active{
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/15/js常用技巧/" rel="next" title="js常用小技巧">
-                <i class="fa fa-chevron-left"></i> js常用小技巧
+              <a href="/2019/02/15/CSS代码建议/" rel="next" title="CSS代码建议">
+                <i class="fa fa-chevron-left"></i> CSS代码建议
               </a>
             
           </div>
@@ -367,10 +392,6 @@ a.active{
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/21/无埋点上报/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -484,7 +505,7 @@ a.active{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1，margin-collapse（margin崩塌）"><span class="nav-number">1.</span> <span class="nav-text">1，margin collapse（margin崩塌）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2，使用flexbox进行布局"><span class="nav-number">2.</span> <span class="nav-text">2，使用flexbox进行布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3，使用css-reset"><span class="nav-number">3.</span> <span class="nav-text">3，使用css reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4，border-box和content-box"><span class="nav-number">4.</span> <span class="nav-text">4，border-box和content-box</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5，尽可能使用低优先级的选择器"><span class="nav-number">5.</span> <span class="nav-text">5，尽可能使用低优先级的选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6，em-rem和pixel"><span class="nav-number">6.</span> <span class="nav-text">6，em,rem和pixel</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title：-用户行为数据收集方案调研"><span class="nav-number">1.</span> <span class="nav-text">title： 用户行为数据收集方案调研</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#必要性"><span class="nav-number">2.1.</span> <span class="nav-text">必要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目前问题"><span class="nav-number">2.2.</span> <span class="nav-text">目前问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#价值"><span class="nav-number">2.3.</span> <span class="nav-text">价值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案调研"><span class="nav-number">3.</span> <span class="nav-text">方案调研</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#业界方案"><span class="nav-number">3.1.</span> <span class="nav-text">业界方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案对比"><span class="nav-number">3.2.</span> <span class="nav-text">方案对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案思路"><span class="nav-number">4.1.</span> <span class="nav-text">方案思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体架构"><span class="nav-number">4.2.</span> <span class="nav-text">整体架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体流程"><span class="nav-number">4.3.</span> <span class="nav-text">整体流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上报的信息"><span class="nav-number">4.4.</span> <span class="nav-text">上报的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现难点"><span class="nav-number">4.5.</span> <span class="nav-text">实现难点</span></a></li></ol></li></ol></div>
             
 
           </div>
