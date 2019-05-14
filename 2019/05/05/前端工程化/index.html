@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="随着业务不断发展，产品规模不断壮大。越来越多应用建立起立，业务逻辑各有不同且日趋复杂，团队人员越发庞大，代码维护成本越来越高。不断实践并不断思考，前端开发其实就是要推动前端工程化。  日常开发中，我们为什么需要前端工程化？  有多种构建工具，比如npm、yarn、browserify、gulp、grunt等，你知道他们之间的区别吗？   本文阐述前端工程化的一些思考和实践。 什么是前端工程化工程化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一记">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2019/05/05/前端工程化/index.html">
+<meta property="og:site_name" content="每日一记">
+<meta property="og:description" content="随着业务不断发展，产品规模不断壮大。越来越多应用建立起立，业务逻辑各有不同且日趋复杂，团队人员越发庞大，代码维护成本越来越高。不断实践并不断思考，前端开发其实就是要推动前端工程化。  日常开发中，我们为什么需要前端工程化？  有多种构建工具，比如npm、yarn、browserify、gulp、grunt等，你知道他们之间的区别吗？   本文阐述前端工程化的一些思考和实践。 什么是前端工程化工程化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-14T09:00:10.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一记">
+<meta name="twitter:description" content="随着业务不断发展，产品规模不断壮大。越来越多应用建立起立，业务逻辑各有不同且日趋复杂，团队人员越发庞大，代码维护成本越来越高。不断实践并不断思考，前端开发其实就是要推动前端工程化。  日常开发中，我们为什么需要前端工程化？  有多种构建工具，比如npm、yarn、browserify、gulp、grunt等，你知道他们之间的区别吗？   本文阐述前端工程化的一些思考和实践。 什么是前端工程化工程化">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/05/05/前端工程化/">
+
+
+
+
+
+  <title> | 每日一记</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">每日一记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/05/05/前端工程化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiannv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="每日一记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T13:07:00+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着业务不断发展，产品规模不断壮大。越来越多应用建立起立，业务逻辑各有不同且日趋复杂，团队人员越发庞大，代码维护成本越来越高。<br>不断实践并不断思考，前端开发其实就是要推动前端工程化。</p>
+<ul>
+<li><p>日常开发中，我们为什么需要前端工程化？</p>
+</li>
+<li><p>有多种构建工具，比如npm、yarn、browserify、gulp、grunt等，你知道他们之间的区别吗？</p>
+</li>
+</ul>
+<p>本文阐述前端工程化的一些思考和实践。</p>
+<h3 id="什么是前端工程化"><a href="#什么是前端工程化" class="headerlink" title="什么是前端工程化"></a>什么是前端工程化</h3><p>工程化是指</p>
+<blockquote>
+<p>将系统化的、严格约束的、可量化的方法应用于软件的开发、运行和维护，即将工程化应用于软件。———— 清华大学出版社《软件工程》</p>
+</blockquote>
+<p>软件工程与其说是计算机中的一门科学，不如说是偏向于提高系统生产效率的一整套方法论。</p>
+<p>前端工程化能够有效 提高 <code>需求开始，需求开发，发布部署，测试阶段</code> 的生产效率，提高代码质量，降低开发成本。</p>
+<p>前端工程化是为开发者服务的。简而言之，就是将日常开发的重复步骤整化为固定流程，把前端开发工作带入到更加系统和规范体系的一系列过程</p>
+<h3 id="为什么要进行前端工程化"><a href="#为什么要进行前端工程化" class="headerlink" title="为什么要进行前端工程化"></a>为什么要进行前端工程化</h3><p>用户的需求从最开始简单的页面在向复杂的应用发展。前端需要做的事情更多，同时也要追求更友好的用户体验。</p>
+<h4 id="第一阶段：石器时代"><a href="#第一阶段：石器时代" class="headerlink" title="第一阶段：石器时代"></a>第一阶段：石器时代</h4><p>适合小项目，不分前后端，页面由jsp、php、tornado template等在服务端生成，浏览器负责展现。<br>[图片]</p>
+<h4 id="第二阶段：后端MVC"><a href="#第二阶段：后端MVC" class="headerlink" title="第二阶段：后端MVC"></a>第二阶段：后端MVC</h4><p>为了降低复杂度，有了Web Server层的框架升级，比如Structs、Spring MVC等。</p>
+<p>以上两个阶段存在的问题</p>
+<ul>
+<li>前端开发依赖开发环境</li>
+<li>前后端没分离，可维护性差</li>
+</ul>
+<h4 id="第三阶段：SPA"><a href="#第三阶段：SPA" class="headerlink" title="第三阶段：SPA"></a>第三阶段：SPA</h4><p>2005年推出Ajax后，前端进入SPA阶段。 Single Page Application 单页面应用。</p>
+<p>Ajax需要面临的问题</p>
+<ul>
+<li>前后端接口约定，开发沟通效率低</li>
+<li>大量的js来满足复杂的交互，维护成本高</li>
+</ul>
+<p>前端工程化的主要目的是让开发更加规范化、流程化、自动化，实现敏捷开发。</p>
+<p>以上三个阶段，开发者想要添加一些逻辑，最简单的做法是在HTML中插入一个script标签，然后直接在里面书写业务逻辑代码。这样做比较简单直接了当，但是也存在其他问题：</p>
+<ul>
+<li>不同script标签之间命名冲突，容易造成全局作用域污染</li>
+<li>代码重用性差</li>
+</ul>
+<p>针对这些问题，可以将HTML中内联的JavaScript提取出来成单独的JS文件，和使用立即执行函数表达式IIFE包起来，只把接口暴露到全局。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   (function() &#123;</span><br><span class="line">  // 通过立即执行函数表达式将作用域隔离</span><br><span class="line">  // 逻辑代码...</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>但是会随着页面逻辑的复杂度增加了其他问题：</p>
+<ul>
+<li><p>页面JS文件引用顺序。<br>HTML页面引用和处理js文件只能是顺序的（不考虑async等），因此js之间的依赖关系也是顺序的。简单的顺序依赖关系无法满足需求。一个大型工程内部的模块依赖关系通常是树状的。</p>
+</li>
+<li><p>页面引用js文件的长度与数量。</p>
+</li>
+</ul>
+<p>文件越来越长，越来越难维护，一个页面的单个js文件可能有几千行代码，如果按功能切割成多个小文件，就会导致页面请求过多，每个HTTP请求都需要单独建立连接，导致页面渲染速度下降</p>
+<h4 id="第四阶段：前端MVC-MVP-MVVC"><a href="#第四阶段：前端MVC-MVP-MVVC" class="headerlink" title="第四阶段：前端MVC/MVP/MVVC"></a>第四阶段：前端MVC/MVP/MVVC</h4><p>为了降低前端开发复杂度，引入了模块化概念。AngularJS、React、Vue三分天下，还有Ember、Knockout、Polymer、Riot等大量前端框架涌现。</p>
+<p>前端工程化的主要目的是让开发更加规范化、流程化、自动化，实现敏捷开发。</p>
+<h4 id="第五阶段：Node全栈"><a href="#第五阶段：Node全栈" class="headerlink" title="第五阶段：Node全栈"></a>第五阶段：Node全栈</h4><p>Nodejs兴起，前端语言可用于后端开发，带来一种新的开发模式。</p>
+<p>后两个阶段的好处是</p>
+<ul>
+<li>前后端分离，开发和维护职责分明</li>
+<li>有利于重复代码模块化，减少迭代成本</li>
+<li>部署相对独立，项目合理分层，更好维护</li>
+</ul>
+<h3 id="前端工程化的基本概念"><a href="#前端工程化的基本概念" class="headerlink" title="前端工程化的基本概念"></a>前端工程化的基本概念</h3><p>工具和语言虽然差异大，但是解决的都是相似的问题，归纳为：</p>
+<ul>
+<li>扩展 javascript 、html、css 本身的语言能力</li>
+<li>解决重复工作</li>
+<li>模板化、模块化</li>
+<li>解决功能复用和变更问题</li>
+<li>解决开发和产品环境差异问题</li>
+<li>解决发布流程问题</li>
+</ul>
+<p>开发同学不用担心不同模块间的框架和依附系统差异，只要知道以上命令就能够完成所有开发流程。优化倾向于底层，脱离业务，实现更高层级的复用</p>
+<p>预编译语言、模块热加载等技术可以提升开发效率，而利用自动化测试、lint 工具等可以保证代码的功能和质量；本地环境下还要生成 source-map、配置模块热加载等等便于调试代码；而到了生产环境下则要对资源进行压缩，生成版本号等。</p>
+<h4 id="工程化基本思想：模块化"><a href="#工程化基本思想：模块化" class="headerlink" title="工程化基本思想：模块化"></a>工程化基本思想：模块化</h4><p>模块化的系统，当需求改动时，开发者可以更快速地将问题定位到相应模块中，模块逻辑清晰不耦合。因此模块化具备更强的可维护性。</p>
+<p>早期设计的js并不具备这一特性，CommonJS 以及 AMD 的出现，为前端定义了模块的标准。也有了实现这些模块化的库，比如 RequireJS 以及 Browserify。可以让开发者将自己工程中的代码按模块进行划分，模块之间也不再仅仅是简单的顺序依赖关系。<br>另外，对于客户端来说，接受打包后的单一文件，解决文件过多导致的HTTP请求耗时长问题；并更具模块之间的依赖和实际需求，按需加载。</p>
+<p>模块化设计的好处：</p>
+<ul>
+<li>作用域封装</li>
+<li>重用性</li>
+<li>解除耦合</li>
+</ul>
+<h4 id="提升前端开发效率：预编译语言"><a href="#提升前端开发效率：预编译语言" class="headerlink" title="提升前端开发效率：预编译语言"></a>提升前端开发效率：预编译语言</h4><p>使用预编译语言的主要目的是为了实现 HTML、CSS、JavaScript本身语言所不具备的特性。比如最常见的 SASS，它是CSS的预编译语言，通过它开发者可以使用模块、定义变量、编写嵌套规则等等来提高开发效率。另外还有 Babel 预编译 JavaScript 来实现新的 ES 特性，以及使用 TypeScript 去做类型检查。</p>
+<h4 id="JavaScript应用不能缺少：包管理"><a href="#JavaScript应用不能缺少：包管理" class="headerlink" title="JavaScript应用不能缺少：包管理"></a>JavaScript应用不能缺少：包管理</h4><p>js没有强大的标准库，但是有很多小型的开源框架库满足常用的功能，比如日期处理、url处理、异步流程控制等，不需要人手工编写。<br>npm是node包管理器，通过npm获取项目需要的依赖，并且通过打包工具和业务代码打包在一起。</p>
+<h4 id="让机器做更多的事情：构建流程管理"><a href="#让机器做更多的事情：构建流程管理" class="headerlink" title="让机器做更多的事情：构建流程管理"></a>让机器做更多的事情：构建流程管理</h4><p>通过Gulp 和 Grunt 等构建流程管理工具，使得构建变得更加简单化，通过项目中的一些配置，开发者可以使用简单的一行命令启动本地开发环境或者构建和发布整个工程。</p>
+<h4 id="摆脱冗长的等待：构建流程优化"><a href="#摆脱冗长的等待：构建流程优化" class="headerlink" title="摆脱冗长的等待：构建流程优化"></a>摆脱冗长的等待：构建流程优化</h4><p>开发者修改代码并保存，构建工具重新打包刷新浏览器，完整构建一遍需要好几分钟，甚至更长，工程越庞大，需要的耗时越长。另外客户端资源体积过大也是问题，需要针对项目特点进行按需加载、异步加载、长效缓存等。</p>
+<h3 id="如何实现前端工程化"><a href="#如何实现前端工程化" class="headerlink" title="如何实现前端工程化"></a>如何实现前端工程化</h3><h4 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h4><p>Asynchronous Module Definition（异步模块定义）的缩写。下面的代码使用 AMD 规范定义了一个模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 定义一个求和的模块</span><br><span class="line">define(&apos;getSum&apos;, [&apos;math&apos;], function(math) &#123;</span><br><span class="line">	//第一个参数是当前模块的 ID，相当于给这个模块起一个名字</span><br><span class="line">	//第二个参数是当前模块的依赖，比如上面我们定义的 getSum 模块需要 math 模块的依赖</span><br><span class="line">	//第三个参数可以是函数或者对象。</span><br><span class="line">  return function(a, b) &#123;</span><br><span class="line">    console.log(&apos;sum: &apos; + math.sum(a, b));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>通过这种形式定义模块的好处在于，它<strong> 显式 </strong>地表达出了每个模块所依赖的其它模块。并且模块定义也不再绑定到全局对象上，不必担心其在别的地方被篡改。</p>
+<h4 id="CommonJS-与-Node-js-模块系统"><a href="#CommonJS-与-Node-js-模块系统" class="headerlink" title="CommonJS 与 Node.js 模块系统"></a>CommonJS 与 Node.js 模块系统</h4><p>近两年来对于开发者来说遵循 CommonJS 标准来编写和使用模块已经成为了一个基本通识。<br>CommonJS 是于 2009 年提出的 JavaScript 规范，它最开始是为了定义服务端标准，而非用于浏览器环境。</p>
+<p>在 CommonJS 中每个文件是一个模块，并且拥有属于自己的作用域和上下文。模块的依赖通过 require 函数来引入。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const math = require(&apos;./math&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>如果想把模块的接口暴露给外部，则要通过 exports 将其导出，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports.getSum = function(a, b) &#123;</span><br><span class="line">  return a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>AMD 和 CommonJS 具有同样的特性——模块的依赖必须显式引入，这样就解决了之前维护复杂模块引入时的顺序问题。</p>
+<h4 id="ES6-Module"><a href="#ES6-Module" class="headerlink" title="ES6 Module"></a>ES6 Module</h4><p>之所以在过去我们有各种不同的模块化标准是因为 JavaScript 这门语言本身不具备模块化的特性，而现在 ES6 中已经具备了。ES6 Module 的模块语法和 CommonJS 很像，它通过 import 和 export 来进行模块的导入和导出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import math from &apos;./math&apos;;</span><br><span class="line"></span><br><span class="line">export function sum(a, b) &#123;</span><br><span class="line">  return a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 ES6 Module 中也是每个文件作为一个模块。和 CommonJS 不同的是，ES6 Module 的<strong>模块的依赖是静态的，或者说是在编译时确定的，而不是运行时确定的。</strong></p>
+<p>举个例子，我们可以在 CommonJS 中的 if 语句中 require 模块，根据代码运行时 if 的判断条件决定是否要引入该模块。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 根据运行时条件确定是否引入</span><br><span class="line">if(Date.now() &gt; new Date(&apos;2019-01-01&apos;)) &#123;</span><br><span class="line">  require(&apos;./my_module&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而在 ES6 Module 中则不允许这样做，import 必须在代码的顶层作用域，这意味着你不能把它放在 if 等代码块中。<strong>ES6 Module 这样规定的原因在于可以使编译器在编译阶段就可以获取到整个依赖树，从而进行代码静态分析层面的优化，比如检测出哪些模块是从来没有被使用过的，然后从打包结果中优化掉等等</strong>。</p>
+<h3 id="模块打包原理简述"><a href="#模块打包原理简述" class="headerlink" title="模块打包原理简述"></a>模块打包原理简述</h3><p>Webpack 以及其它的一些打包工具最基本的功能就是按照我们定义好的依赖树将模块合并成单一的文件，让浏览器能够按照预想的依赖顺序去执行。这个过程我们通常将它叫做<strong>模块打包</strong>。</p>
+<p><a href="https://github.com/xiannv/xiannv.github.io/tree/master/demo/webpack-test-demo" target="_blank" rel="noopener">源码地址</a></p>
+<p>Webpack 进行打包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Webpack 版本需要大于等于 2，这里使用的版本是 3.5.5</span><br><span class="line">webpack app.js dist/bundle.js</span><br></pre></td></tr></table></figure></p>
+<p>app.js 是我们的打包入口文件，dist/bundle.js 是最终的打包合并结果文件。Webpack 会在打包的过程中从入口 app.js 开始查找所有依赖的模块，并最终包装和合并这些模块放在 bundle.js 中</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/19/面试问题/" rel="next" title="面试问题">
+                <i class="fa fa-chevron-left"></i> 面试问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/14/img属性总结/" rel="prev" title="img 属性总结">
+                img 属性总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xiannv</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是前端工程化"><span class="nav-number">1.</span> <span class="nav-text">什么是前端工程化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要进行前端工程化"><span class="nav-number">2.</span> <span class="nav-text">为什么要进行前端工程化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一阶段：石器时代"><span class="nav-number">2.1.</span> <span class="nav-text">第一阶段：石器时代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二阶段：后端MVC"><span class="nav-number">2.2.</span> <span class="nav-text">第二阶段：后端MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三阶段：SPA"><span class="nav-number">2.3.</span> <span class="nav-text">第三阶段：SPA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四阶段：前端MVC-MVP-MVVC"><span class="nav-number">2.4.</span> <span class="nav-text">第四阶段：前端MVC/MVP/MVVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五阶段：Node全栈"><span class="nav-number">2.5.</span> <span class="nav-text">第五阶段：Node全栈</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端工程化的基本概念"><span class="nav-number">3.</span> <span class="nav-text">前端工程化的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工程化基本思想：模块化"><span class="nav-number">3.1.</span> <span class="nav-text">工程化基本思想：模块化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升前端开发效率：预编译语言"><span class="nav-number">3.2.</span> <span class="nav-text">提升前端开发效率：预编译语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript应用不能缺少：包管理"><span class="nav-number">3.3.</span> <span class="nav-text">JavaScript应用不能缺少：包管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#让机器做更多的事情：构建流程管理"><span class="nav-number">3.4.</span> <span class="nav-text">让机器做更多的事情：构建流程管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#摆脱冗长的等待：构建流程优化"><span class="nav-number">3.5.</span> <span class="nav-text">摆脱冗长的等待：构建流程优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现前端工程化"><span class="nav-number">4.</span> <span class="nav-text">如何实现前端工程化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AMD"><span class="nav-number">4.1.</span> <span class="nav-text">AMD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CommonJS-与-Node-js-模块系统"><span class="nav-number">4.2.</span> <span class="nav-text">CommonJS 与 Node.js 模块系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6-Module"><span class="nav-number">4.3.</span> <span class="nav-text">ES6 Module</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块打包原理简述"><span class="nav-number">5.</span> <span class="nav-text">模块打包原理简述</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiannv</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
