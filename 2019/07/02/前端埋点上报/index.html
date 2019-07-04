@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="src 必须，图像文件的url，也就是引用该图像的文件绝对路径或者相对路径。 alt 定义了描述图像的替换文本。用户将看到这个显示，如果图像的URL是错误的，该图像不在 支持的格式 列表中，或者如果图像还没有被下载。 crossorigin HTML5 新属性。枚举属性表明是否必须使用CORS 完成相关图像的抓取。  anonymous执行一个跨域的请求（比如，有 Origin: HTTP hea">
+<meta name="description" content="为了追求前端项目的稳定性，我们往往需要对运行时的代码进行监控并向服务器上报异常信息。浏览器中javascript的运行时包含两种  浏览器加载并执行js代码 各种方式触发回调执行，比如addEventListener、setTimeout,ajax/fetch,Promise等WebApi触发或自己实现EventEmitter触发。原文地址  ECMAScript6–18.Decorators修饰">
 <meta property="og:type" content="article">
-<meta property="og:title" content="img 属性总结">
-<meta property="og:url" content="https://xiannv.github.io/index.html/2019/05/14/img属性总结/index.html">
+<meta property="og:title" content="前端埋点上报">
+<meta property="og:url" content="https://xiannv.github.io/index.html/2019/07/02/前端埋点上报/index.html">
 <meta property="og:site_name" content="每日一记">
-<meta property="og:description" content="src 必须，图像文件的url，也就是引用该图像的文件绝对路径或者相对路径。 alt 定义了描述图像的替换文本。用户将看到这个显示，如果图像的URL是错误的，该图像不在 支持的格式 列表中，或者如果图像还没有被下载。 crossorigin HTML5 新属性。枚举属性表明是否必须使用CORS 完成相关图像的抓取。  anonymous执行一个跨域的请求（比如，有 Origin: HTTP hea">
+<meta property="og:description" content="为了追求前端项目的稳定性，我们往往需要对运行时的代码进行监控并向服务器上报异常信息。浏览器中javascript的运行时包含两种  浏览器加载并执行js代码 各种方式触发回调执行，比如addEventListener、setTimeout,ajax/fetch,Promise等WebApi触发或自己实现EventEmitter触发。原文地址  ECMAScript6–18.Decorators修饰">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-14T09:10:34.052Z">
+<meta property="og:updated_time" content="2019-07-03T06:11:05.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="img 属性总结">
-<meta name="twitter:description" content="src 必须，图像文件的url，也就是引用该图像的文件绝对路径或者相对路径。 alt 定义了描述图像的替换文本。用户将看到这个显示，如果图像的URL是错误的，该图像不在 支持的格式 列表中，或者如果图像还没有被下载。 crossorigin HTML5 新属性。枚举属性表明是否必须使用CORS 完成相关图像的抓取。  anonymous执行一个跨域的请求（比如，有 Origin: HTTP hea">
+<meta name="twitter:title" content="前端埋点上报">
+<meta name="twitter:description" content="为了追求前端项目的稳定性，我们往往需要对运行时的代码进行监控并向服务器上报异常信息。浏览器中javascript的运行时包含两种  浏览器加载并执行js代码 各种方式触发回调执行，比如addEventListener、setTimeout,ajax/fetch,Promise等WebApi触发或自己实现EventEmitter触发。原文地址  ECMAScript6–18.Decorators修饰">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/05/14/img属性总结/">
+  <link rel="canonical" href="https://xiannv.github.io/index.html/2019/07/02/前端埋点上报/">
 
 
 
 
 
-  <title>img 属性总结 | 每日一记</title>
+  <title>前端埋点上报 | 每日一记</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/05/14/img属性总结/">
+    <link itemprop="mainEntityOfPage" href="https://xiannv.github.io/index.html/2019/07/02/前端埋点上报/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiannv">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">img 属性总结</h1>
+          <h1 class="post-title" itemprop="name headline">前端埋点上报</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-14T17:07:27+08:00">
-                2019-05-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T20:05:42+08:00">
+                2019-07-02
               </time>
             
 
@@ -299,12 +299,19 @@
       
 
       
-        <p><code>src</code> 必须，图像文件的url，也就是引用该图像的文件绝对路径或者相对路径。</p>
-<p><code>alt</code> 定义了描述图像的替换文本。用户将看到这个显示，如果图像的URL是错误的，该图像不在 支持的格式 列表中，或者如果图像还没有被下载。</p>
-<p><code>crossorigin</code> HTML5 新属性。枚举属性表明是否必须使用CORS 完成相关图像的抓取。</p>
+        <p>为了追求前端项目的稳定性，我们往往需要对运行时的代码进行监控并向服务器上报异常信息。浏览器中javascript的运行时包含两种</p>
 <ul>
-<li>anonymous<br>执行一个跨域的请求（比如，有 Origin: HTTP header）。但是没有发送证书（比如，没有 cookie，没有 X.509 证书，没有 HTTP 基本的授权认证）。如果服务器没有给源站证书（没有设置 Access-Control-Allow-Origin: HTTP头），图像会被污染而且它的使用会被限制。</li>
-<li>use-credentials<br>一个有证书的跨域请求（比如，有 Origin: HTTP header）被发送 （比如，a cookie, a certificate, and HTTP Basic authentication is performed）。如果服务器没有给源站发送证书（通过 Access-Control-Allow-Credentials: HTTP header），图像会被污染而且它的使用会被限制。</li>
+<li>浏览器加载并执行js代码</li>
+<li>各种方式触发回调执行，比如<code>addEventListener</code>、<code>setTimeout</code>,<code>ajax/fetch</code>,<code>Promise</code>等WebApi触发或自己实现EventEmitter触发。<br><a href="https://github.com/rainjay/blog/issues/5" target="_blank" rel="noopener">原文地址</a></li>
+</ul>
+<h4 id="ECMAScript6–18-Decorators修饰器"><a href="#ECMAScript6–18-Decorators修饰器" class="headerlink" title="ECMAScript6–18.Decorators修饰器"></a>ECMAScript6–18.Decorators修饰器</h4><p>.基本概念</p>
+<p>修饰器是一个函数用来修改类的行为；（扩展类的功能）<br>修饰器只在类的范畴里有用，其他地方不能用；</p>
+<p>好处：</p>
+<ul>
+<li><p>把埋点系统抽离出来，成为一个可复用的模块； 埋点接口变了，发送埋点通信方式变了，只需要改log对应的方法就可以了； 广告AD这个类几乎是不动的，保证了代码的可复用性；</p>
+</li>
+<li><p>埋点系统从业务逻辑中拆离出去，业务代码简洁度、可维护性增强了不少</p>
+</li>
 </ul>
 
       
@@ -330,8 +337,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/05/前端工程化/" rel="next" title="前端工程化">
-                <i class="fa fa-chevron-left"></i> 前端工程化
+              <a href="/2019/06/20/虚拟DOM/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -339,10 +346,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/20/虚拟DOM/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -394,8 +397,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -437,6 +449,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ECMAScript6–18-Decorators修饰器"><span class="nav-number">1.</span> <span class="nav-text">ECMAScript6–18.Decorators修饰器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

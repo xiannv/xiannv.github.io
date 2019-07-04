@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="每日一记">
 <meta property="og:description" content="背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;console.log(obj1  === obj2); //false">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-01T09:48:27.078Z">
+<meta property="og:updated_time" content="2019-06-21T03:36:05.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="判断两个object是否相等">
 <meta name="twitter:description" content="背景在js中，判断两个自变量对象是否一直（键-值，逐一对应），不能直接使用“==”或者”===”判断是否相等。自变量对象都是指向不同地址的。会返回false ，例如：123var obj1 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;var obj2 = &amp;#123;&amp;apos;a&amp;apos;:1&amp;#125;;console.log(obj1  === obj2); //false">
@@ -362,7 +362,15 @@ var obj2 = {
 
 };
 console.log(isObjectValueEqual(obj1, obj2));
-</code></pre><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>场景1，用户插入新数据。用户需要插入一条新纪录，用于对比现有的所有数据，避免用户重复插入相同数据。<br>场景2，发http请求。对比上一次请求的参数和这次是否相同，相同就不发出新请求。这个在需要提供多重筛选条件的数据展示或操作型应用，很常见用。<br>场景3，还有各种需要肉眼逐一对比两个错误日志等等是否完全相等的看瞎眼案例，手动复制到控制台，直接运行。<br>当然，上面的两个问题，还有其他不同的技术方案来解决。改造一下上面的代码，可以用来判断，对象b是否含有对象a的全部属性或者对象b的数据格式和对象a有什么差异等等，等等</p>
+</code></pre><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li><p>场景1，用户插入新数据。用户需要插入一条新纪录，用于对比现有的所有数据，避免用户重复插入相同数据。</p>
+</li>
+<li><p>场景2，发http请求。对比上一次请求的参数和这次是否相同，相同就不发出新请求。这个在需要提供多重筛选条件的数据展示或操作型应用，很常见用。</p>
+</li>
+<li><p>场景3，还有各种需要肉眼逐一对比两个错误日志等等是否完全相等的看瞎眼案例，手动复制到控制台，直接运行。</p>
+</li>
+</ul>
+<p>当然，上面的两个问题，还有其他不同的技术方案来解决。改造一下上面的代码，可以用来判断，对象b是否含有对象a的全部属性或者对象b的数据格式和对象a有什么差异等等，等等</p>
 <p><a href="https://codepen.io/xiannv/pen/bZEYNZ" target="_blank" rel="noopener">代码地址</a></p>
 
       
@@ -477,7 +485,7 @@ console.log(isObjectValueEqual(obj1, obj2));
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="每日一记">
 <meta property="og:description" content="异常捕获方法try catchtry catch判断代码时候存在错误。优点：可以很好的捕获异常并进行响应处理，不让页面报错挂掉。缺点：需要在捕获异常的代码上进行包裹，会导致页面臃肿不堪，不适用于整个项目的异常捕获。 window.onerror参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-13T09:27:06.484Z">
+<meta property="og:updated_time" content="2019-07-03T04:06:45.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈前端异常捕获">
 <meta name="twitter:description" content="异常捕获方法try catchtry catch判断代码时候存在错误。优点：可以很好的捕获异常并进行响应处理，不让页面报错挂掉。缺点：需要在捕获异常的代码上进行包裹，会导致页面臃肿不堪，不适用于整个项目的异常捕获。 window.onerror参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈">
@@ -300,13 +300,14 @@
 
       
         <h2 id="异常捕获方法"><a href="#异常捕获方法" class="headerlink" title="异常捕获方法"></a>异常捕获方法</h2><h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><p><code>try catch</code>判断代码时候存在错误。<br>优点：可以很好的捕获异常并进行响应处理，不让页面报错挂掉。<br>缺点：需要在捕获异常的代码上进行包裹，会导致页面臃肿不堪，不适用于整个项目的异常捕获。</p>
-<h3 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h3><p>参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈信息</p>
+<h3 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h3><p>参数：errorMessage-异常信息, scriptURI-异常文件路径, lineNo-异常行号, columnNo-异常列号, error-异常堆栈信息。<br>js具备动态修改原有属性的能力，因此可以通过标准非侵入地动态扩展属性的方法（在执行原有代码的基础上再扩展所需要的功能）扩展setTimeout：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var _setTimeout = window.setTimeout</span><br><span class="line">window.setTimeout = function(cb, timeout) &#123;</span><br><span class="line">  var args = Array.prototype.slice.call(arguments, 2)</span><br><span class="line">  return _setTimeout(function() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      cb(...args)</span><br><span class="line">    &#125; catch (error) &#123;</span><br><span class="line">      // 对 error 进行加工后上报给服务器</span><br><span class="line">      reportError(e)</span><br><span class="line">      throw error</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, timeout)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>优点：提供全局监听异常的功能。<br>缺点：跨域之后，无法捕获异常信息，统一返回script error。</p>
 <h3 id="使用windowerror异常捕获问题"><a href="#使用windowerror异常捕获问题" class="headerlink" title="使用windowerror异常捕获问题"></a>使用windowerror异常捕获问题</h3><p>针对上述所提到的跨域之后，无法捕获异常信息。<br>解决方案：script属性配置 <code>crossorigin=&quot;anonymous&quot;</code> 并且服务器添加<code>Access-Control-Allow-Origin</code></p>
 <h3 id="压缩后脚本定位"><a href="#压缩后脚本定位" class="headerlink" title="压缩后脚本定位"></a>压缩后脚本定位</h3><p>一般上线之前会对代码进行压缩，一方面节省源码体积，另外一方面合并多个文件，减少http请求数。这时候会出现压缩后无法找到原始报错位置的问题。<br>解决方案：利用webpack打包压缩后生成一份对应脚本的map文件就能进行追踪了，在webpack中开启source-map功能。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;  </span><br><span class="line">    \\...  </span><br><span class="line">    devtool: &apos;#source-map&apos;,  </span><br><span class="line">    \\...  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html" target="_blank" rel="noopener">《Source Map详解》</a></p>
 <h3 id="错误被框架自身捕获"><a href="#错误被框架自身捕获" class="headerlink" title="错误被框架自身捕获"></a>错误被框架自身捕获</h3><p>项目使用MVVM框架，window.onerror捕获不到异常，因为被框架自身的异常机制捕获了。比如Vue 2.x中使用<code>Vue.config.errorHandler</code>捕获全局异常</p>
+<h3 id="Decorator模式"><a href="#Decorator模式" class="headerlink" title="Decorator模式"></a>Decorator模式</h3><p>动态将职责附加到对象上。如果要扩展功能，装饰者提供了比继承更具弹性的代替方案</p>
 
       
     </div>
@@ -420,7 +421,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -457,7 +458,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常捕获方法"><span class="nav-number">1.</span> <span class="nav-text">异常捕获方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch"><span class="nav-number">1.1.</span> <span class="nav-text">try catch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-onerror"><span class="nav-number">1.2.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用windowerror异常捕获问题"><span class="nav-number">1.3.</span> <span class="nav-text">使用windowerror异常捕获问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩后脚本定位"><span class="nav-number">1.4.</span> <span class="nav-text">压缩后脚本定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误被框架自身捕获"><span class="nav-number">1.5.</span> <span class="nav-text">错误被框架自身捕获</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常捕获方法"><span class="nav-number">1.</span> <span class="nav-text">异常捕获方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch"><span class="nav-number">1.1.</span> <span class="nav-text">try catch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-onerror"><span class="nav-number">1.2.</span> <span class="nav-text">window.onerror</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用windowerror异常捕获问题"><span class="nav-number">1.3.</span> <span class="nav-text">使用windowerror异常捕获问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩后脚本定位"><span class="nav-number">1.4.</span> <span class="nav-text">压缩后脚本定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误被框架自身捕获"><span class="nav-number">1.5.</span> <span class="nav-text">错误被框架自身捕获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decorator模式"><span class="nav-number">1.6.</span> <span class="nav-text">Decorator模式</span></a></li></ol></li></ol></div>
             
 
           </div>
